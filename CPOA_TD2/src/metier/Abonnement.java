@@ -1,4 +1,4 @@
-package magazine;
+package metier;
 
 import java.sql.Connection;
 
@@ -12,12 +12,55 @@ import java.util.Scanner;
 
 
 
-public class Abonnement extends Connexion{
+public class Abonnement{
+	
+	private int idCl;
+	private int idRev;
+	private Date dateDeb;
+	private Date dateFin;
+	
+	
+	public Abonnement(int idCl, int idRev, Date dateDeb, Date dateFin) {
+		super();
+		this.idCl = idCl;
+		this.idRev = idRev;
+		this.dateDeb = dateDeb;
+		this.dateFin = dateFin;
+	}
+	
+	public int getIdCl() {
+		return idCl;
+	}
 
+	public void setIdCl(int idCl) {
+		this.idCl = idCl;
+	}
+
+	public int getIdRev() {
+		return idRev;
+	}
+
+	public void setIdRev(int idRev) {
+		this.idRev = idRev;
+	}
+
+	public Date getDateDeb() {
+		return dateDeb;
+	}
+
+	public void setDateDeb(Date dateDeb) {
+		this.dateDeb = dateDeb;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
 	
-	
-	//fonctions:
-	
+
 	public void tableAbo() {
 		
 		Connexion connection = new Connexion();
@@ -36,25 +79,25 @@ public class Abonnement extends Connexion{
 			    System.out.println("	id de la revue : " + nom );
 			    
 			    java.sql.Date dateD  = res.getDate("date_debut");
-			    System.out.println("	date début : " + dateD );
+			    System.out.println("	date dï¿½but : " + dateD );
 			    
 			    java.sql.Date dateF  = res.getDate("date_fin");
 			    System.out.println("	date fin : " + dateF + "\n");
 		    }
 			
 		if (laConnexion != null) {
-			System.out.println("Fermeture de la connexion réussie! ");
+			System.out.println("Fermeture de la connexion rï¿½ussie! ");
 			laConnexion.close();
 		}	
 		
 		} catch (SQLException sqle) {
-			System.out.println("Pas connecté" + sqle.getMessage());
+			System.out.println("Pas connectï¿½" + sqle.getMessage());
 		}
 		
 	}
 		public void choixAbo() throws Exception {
 
-			System.out.println("Que souhaitez-vous faire sur la table Periodicité: \n 1.Ajouter \n 2.Modifier "
+			System.out.println("Que souhaitez-vous faire sur la table Abonnementï¿½: \n 1.Ajouter \n 2.Modifier "
 					+ "\n 3.Supprimer \n 4.Afficher la table");
 			Scanner sc = new Scanner(System.in);
 			String choix = sc.nextLine();
@@ -68,7 +111,7 @@ public class Abonnement extends Connexion{
 				break;
 			case "4": this.tableAbo();
 				break;
-			default: System.out.println("Entrée inconnue");
+			default: System.out.println("Entrï¿½e inconnue");
 			
 			}
 			
@@ -98,8 +141,8 @@ public class Abonnement extends Connexion{
 				
 				Scanner sc = new Scanner(System.in);
 				
-				int idCl = sc.nextInt();
-				int idRev = sc.nextInt();
+				this.setIdCl(sc.nextInt());
+				this.setIdRev(sc.nextInt());
 				
 				Date date1 = this.lireDate();
 				java.sql.Date sDate = convertUtilToSql(date1);
@@ -108,6 +151,9 @@ public class Abonnement extends Connexion{
 				Date date2 = this.lireDate();
 				java.sql.Date uDate = convertUtilToSql(date2);
 				System.out.println(uDate);
+				
+				this.setDateDeb(uDate);
+				this.setDateFin(sDate);
 				
 			    try {
 			    	
@@ -120,19 +166,19 @@ public class Abonnement extends Connexion{
 						req.setDate(4, uDate);
 						
 						int i = req.executeUpdate();
-						System.out.println("ligne touché : " + i);
+						System.out.println("ligne touchï¿½ : " + i);
 						
 						if (laConnexion != null) {
-							System.out.println("Fermeture réussie! ");
+							System.out.println("Fermeture rï¿½ussie! ");
 							laConnexion.close();
 						}	
 						
 					} catch (SQLException sqle) {
-						System.out.println("Pas connecté" + sqle.getMessage());
+						System.out.println("Pas connectï¿½" + sqle.getMessage());
 				}
 			    
 			    
-			    System.out.println("Souhaitez-vous insérer une nouvelle ligne ? : \n1 : oui \n2 : non");
+			    System.out.println("Souhaitez-vous insï¿½rer une nouvelle ligne ? : \n1 : oui \n2 : non");
 			    int refaire = sc.nextInt();
 			    if(refaire==1)
 			    	this.insereAbo();
@@ -147,8 +193,8 @@ public class Abonnement extends Connexion{
 			
 			Scanner sc = new Scanner(System.in);
 			
-			int idCl = sc.nextInt();
-			int idRev = sc.nextInt();
+			this.setIdCl(sc.nextInt());
+			this.setIdRev(sc.nextInt());
 			
 			Connexion connection = new Connexion();
 			Connection laConnexion = connection.creeConnexion();
@@ -156,19 +202,19 @@ public class Abonnement extends Connexion{
 			try {
 				PreparedStatement req = laConnexion.prepareStatement("delete from Abonnement where id_client=? and id_revue=?");
 					
-				req.setInt(1, idCl); // 1 correspond au 1er para du where
-				req.setInt(2, idRev);
+				req.setInt(1, getIdCl()); // 1 correspond au 1er para du where
+				req.setInt(2, getIdRev());
 
 				int i = req.executeUpdate();
-				System.out.println("ligne touché : " + i);
+				System.out.println("ligne touchï¿½ : " + i);
 				
 				if (laConnexion != null) {
-					System.out.println("Fermeture réussie! ");
+					System.out.println("Fermeture rï¿½ussie! ");
 					laConnexion.close();
 				}	
 				
 			} catch (SQLException sqle) {
-				System.out.println("Pas connecté" + sqle.getMessage());
+				System.out.println("Pas connectï¿½" + sqle.getMessage());
 			}
 			
 			System.out.println("Souhaitez-vous supprimer une autre ligne ? : \n1 : oui \n2 : non");
@@ -181,13 +227,13 @@ public class Abonnement extends Connexion{
 			
 			this.tableAbo();
 			
-			System.out.println("Quelle donnée souhaitez-vous modifier parmi (recopier exactement le terme) : \ndate_debut \ndate_fin");
+			System.out.println("Quelle donnï¿½e souhaitez-vous modifier parmi (recopier exactement le terme) : \ndate_debut \ndate_fin");
 			Scanner sc = new Scanner(System.in);
 			String col = sc.nextLine();
 			
-			System.out.println("Entrez l'id du client et celui de la revue da la ligne à modifier:");
-			String numCl = sc.nextLine();
-			String numRev = sc.nextLine();
+			System.out.println("Entrez l'id du client et celui de la revue da la ligne ï¿½ modifier:");
+			this.setIdCl(sc.nextInt());
+			this.setIdRev(sc.nextInt());
 			
 			System.out.println("Par quel date ? : ");
 			Date date1 = this.lireDate();
@@ -201,19 +247,19 @@ public class Abonnement extends Connexion{
 				PreparedStatement req = laConnexion.prepareStatement("update Abonnement set " + col + "=? where id_client=? and id_revue=?");
 					
 				req.setDate(1, sDate);
-				req.setString(2, numCl);
-				req.setString(3, numRev);
+				req.setInt(2, getIdCl());
+				req.setInt(3, getIdRev());
 	
 				int i = req.executeUpdate();
-				System.out.println("ligne touché : " + i);
+				System.out.println("ligne touchï¿½ : " + i);
 				
 				if (laConnexion != null) {
-					System.out.println("Fermeture réussie! ");
+					System.out.println("Fermeture rï¿½ussie! ");
 					laConnexion.close();
 				}	
 				
 			} catch (SQLException sqle) {
-				System.out.println("Pas connecté" + sqle.getMessage());
+				System.out.println("Pas connectï¿½" + sqle.getMessage());
 			}
 			
 			System.out.println("Souhaitez-vous modifier une autre ligne ? : \n1 : oui \n2 : non");
