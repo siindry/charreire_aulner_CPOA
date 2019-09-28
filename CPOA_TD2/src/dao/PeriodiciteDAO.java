@@ -12,19 +12,14 @@ public class PeriodiciteDAO implements DAO<Periodicite> {
 
 
 	@Override
-	public boolean create(Periodicite objet) {
+	public boolean create(Periodicite p1) {
 		
 		int i = 0;
 		
-		Periodicite p1 = new Periodicite(i, null);
 		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
-		
-		System.out.println("Quel type de periodicit� souhaitez-vous ajouter ?");
-		Scanner sc = new Scanner(System.in);
-		String nm = sc.nextLine();
-		p1.setLibelle(nm);
+	
 		
 		try {
 			PreparedStatement req = laConnexion.prepareStatement("insert into Periodicite (libelle) value(?)",
@@ -43,8 +38,6 @@ public class PeriodiciteDAO implements DAO<Periodicite> {
 			System.out.println("Pas connect�" + sqle.getMessage());
 		}
 		
-		System.out.println("Souhaitez-vous ins�rer une nouvelle ligne ? : \n1 : oui \n2 : non");
-	    int refaire = sc.nextInt();
 	    
 	    if(i==0)
 	    	return false;
@@ -57,16 +50,83 @@ public class PeriodiciteDAO implements DAO<Periodicite> {
 
 
 	@Override
-	public boolean update(Periodicite objet) {
-		// TODO Stub de la méthode généré automatiquement
-		return false;
-	}
+	public boolean update(Periodicite p1) {
+		
+		int i = 1;
+
+	
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Avec quel mot souhaiter vous remplacer la p�riodicite '" + p1.getLibelle() + "' ?");
+		String nom_ap = sc.nextLine();
+		
+		
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where libelle=?");
+				
+			req.setString(1, nom_ap);
+			req.setString(2, p1.getLibelle());
+
+			i = req.executeUpdate();
+			System.out.println("ligne touch� : " + i);
+			
+		if (laConnexion != null) {
+			System.out.println("Fermeture r�ussie! ");
+			laConnexion.close();
+			
+		}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+		
+		 if(i==0)
+		    	return false;
+		    else {
+		    	return true;
+		    }
+		
+}
+		
+		
+		
+	
 
 	@Override
-	public boolean delete(Periodicite objet) {
-		// TODO Stub de la méthode généré automatiquement
-		return false;
+	public boolean delete(Periodicite p1) {
+		
+		int i =0;
+		
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where libelle=?");
+				
+			req.setString(1, p1.getLibelle()); // 1 correspond au 1er para du where
+			
+			i = req.executeUpdate();
+			System.out.println("ligne touch� : " + i);
+			
+			if (laConnexion != null) {
+				System.out.println("Fermeture r�ussie! ");
+				laConnexion.close();
+			}	
+			
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+	    if(i==0)
+	    	return false;
+	    else {
+	    	return true;
+	    }
+		
+		
 	}
+
+	
 
 	@Override
 	public Periodicite getById(int id){
@@ -109,48 +169,7 @@ public class PeriodiciteDAO implements DAO<Periodicite> {
 	    
 	}
 
-	/*@Override
-	public boolean update(Periodicite objet) {
-		// TODO Stub de la méthode généré automatiquement
-		return false;
-	}
-
-	@Override
-	public boolean delete(Periodicite objet) {
-		
-		Periodicite p1 = null;
-		
-		System.out.println("Quel type de periodicit� souhaitez-vous supprimer ?");
-		Scanner sc = new Scanner(System.in);
-		String nom = sc.nextLine();
-		p1.setLibelle(nom);
-		
-		Connexion connection = new Connexion();
-		Connection laConnexion = connection.creeConnexion();
-		
-		try {
-			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where libelle=?");
-				
-			req.setString(1, p1.getLibelle()); // 1 correspond au 1er para du where
-			
-			int i = req.executeUpdate();
-			System.out.println("ligne touch� : " + i);
-			
-			if (laConnexion != null) {
-				System.out.println("Fermeture r�ussie! ");
-				laConnexion.close();
-			}	
-			
-		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
-		}
-		
-		System.out.println("Souhaitez-vous supprimer une autre ligne ? : \n1 : oui \n2 : non");
-	    int refaire = sc.nextInt();
-	    if(refaire==1)
-	    	p1.suppPeriode();
-		
-	}*/
+	
 
 
 	
