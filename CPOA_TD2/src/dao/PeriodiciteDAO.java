@@ -52,22 +52,16 @@ public class PeriodiciteDAO implements DAO<Periodicite> {
 	@Override
 	public boolean update(Periodicite p1) {
 		
-		int i = 1;
+		int i = 0;
 
-	
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Avec quel mot souhaiter vous remplacer la p�riodicite '" + p1.getLibelle() + "' ?");
-		String nom_ap = sc.nextLine();
-		
-		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
 		try {
-			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where libelle=?");
+			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where id_periodicite=?");
 				
-			req.setString(1, nom_ap);
-			req.setString(2, p1.getLibelle());
+			req.setString(1, p1.getLibelle());
+			req.setInt(2, p1.getId_periode());
 
 			i = req.executeUpdate();
 			System.out.println("ligne touch� : " + i);

@@ -27,11 +27,17 @@ public class ChoixDAO {
 			break;
 		case "2": 
 			
-			System.out.println("Quel libelle de periodicité souhaitez-vous modifier ?");
+			System.out.println("Quel id de ligne de periodicité souhaitez-vous modifier ?");
 			Scanner sc2 = new Scanner(System.in);
-			p1.setLibelle(sc2.nextLine());
+			int idlib = sc2.nextInt();
+			p1.setId_periode(idlib);
+			Scanner sc21 = new Scanner(System.in);
 			
-	
+			System.out.println("Avec quel mot souhaiter vous remplacer la p�riodicite ?");
+			String nom_ap = sc.nextLine();
+			p1.setLibelle(nom_ap);
+			System.out.println("salut");
+		
 			pd1.update(p1);
 			break;
 		case "3": System.out.println("Quelle Périodicité voulez-vous supprimer ?");
