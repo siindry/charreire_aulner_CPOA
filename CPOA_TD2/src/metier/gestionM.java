@@ -15,19 +15,16 @@ public class gestionM {
 					+ "3.Client \n 4.Abonnement");
 			Scanner sc = new Scanner(System.in);
 			int choix = sc.nextInt();
+			ChoixDAO c1 = new ChoixDAO();
 			
 			switch(choix) {
-				case 1: ChoixDAO c1 = new ChoixDAO();
-							c1.choixPeriodeDAO();				
+				case 1: c1.choixPeriodeDAO();				
 					break;
-				case 2: Revue r1 = null;
-									r1.choixRevue();
+				case 2: c1.choixRevueDAO();
 					break;
-				case 3: Client cd1 = null;
-									//c1.choixClient();
+				case 3: c1.choixClientDAO();
 					break;
-				case 4: Abonnement a1 = null;
-									a1.choixAbo();
+				case 4: c1.choixAboDAO();
 									
 					break;
 				default: System.out.println("Entr�e inconnue");
