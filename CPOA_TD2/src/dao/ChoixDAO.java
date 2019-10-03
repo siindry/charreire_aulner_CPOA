@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
 
+import dao.factory.DAOFactory;
+import dao.memoire.ListeMemoirePeriodiciteDAO;
+import dao.mysql.MySQLPeriodiciteDAO;
+import enumeration.EPersistance;
 import metier.Abonnement;
 import metier.Client;
 import metier.Periodicite;
@@ -17,7 +21,21 @@ public class ChoixDAO {
 	
 	public void choixPeriodeDAO() {
 
-		PeriodiciteDAO pd1 = new PeriodiciteDAO();
+		DAOFactory doas = null;
+		System.out.println("En quel type de BdD voulez-vous éditer : 1.MYSQL 2.ListeMemoire");
+		Scanner sc = new Scanner(System.in);
+		String choixType = sc.nextLine();
+		
+		switch(choixType) {
+		case "MYSQL" : doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+						MySQLPeriodiciteDAO pds1 = MySQLPeriodiciteDAO.getInstance();
+			break;
+		case "ListeMemoire" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
+								ListeMemoirePeriodiciteDAO pds11 = ListeMemoirePeriodiciteDAO.getInstance();
+		}
+		
+		
+		
 		Periodicite p1 = new Periodicite(0, "");
 		
 		System.out.println("Que souhaitez-vous faire sur la table Periodicitï¿½: \n 1.Ajouter \n 2.Modifier "

@@ -1,4 +1,4 @@
-package dao;
+package dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,15 +8,12 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.Scanner;
 
 import metier.Abonnement;
 import metier.Connexion;
 
-
-public class AbonnementDAO implements DAO<Abonnement> {
-
-	@Override
+public class MySQLAbonnementDAO {
+	
 	public Abonnement getById(int id) {
 		
 		Abonnement a1 = new Abonnement(id, id, null, null);
@@ -58,7 +55,7 @@ public class AbonnementDAO implements DAO<Abonnement> {
 		return a1;
 	}
 
-	@Override
+
 	public boolean create(Abonnement a1) {
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
@@ -96,7 +93,7 @@ public class AbonnementDAO implements DAO<Abonnement> {
 		return false;
 	}
 
-	@Override
+
 	public boolean update(Abonnement a1) {
 		
 		int i = 0;
@@ -141,7 +138,7 @@ public class AbonnementDAO implements DAO<Abonnement> {
 	    }
 	}
 
-	@Override
+
 	public boolean delete(Abonnement a1) {
 		
 		int i =0;
@@ -173,5 +170,4 @@ public class AbonnementDAO implements DAO<Abonnement> {
 	    	return true;
 	    }
 	}
-
 }

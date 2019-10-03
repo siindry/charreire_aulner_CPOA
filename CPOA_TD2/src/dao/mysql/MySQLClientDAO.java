@@ -1,4 +1,4 @@
-package dao;
+package dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,8 @@ import java.sql.Statement;
 import metier.Client;
 import metier.Connexion;
 
-public class ClientDAO implements DAO<Client>{
-
-	@Override
+public class MySQLClientDAO /*implements IClientDAO*/{
+	
 	public Client getById(int id) {
 		
 		Client c1 = new Client(null, null, id, null, null, null, null, null);
@@ -63,7 +62,7 @@ public class ClientDAO implements DAO<Client>{
 
 	}
 
-	@Override
+
 	public boolean create(Client c1) {
 		int i = 0;
 		
@@ -104,7 +103,7 @@ public class ClientDAO implements DAO<Client>{
 
 	}
 
-	@Override
+
 	public boolean update(Client c1) {
 		int i = 0;
 		
@@ -142,7 +141,7 @@ public class ClientDAO implements DAO<Client>{
 	    }
 	}
 
-	@Override
+
 	public boolean delete(Client c1) {
 		int i = 0;
 		
@@ -171,7 +170,4 @@ public class ClientDAO implements DAO<Client>{
 	    }
 		
 	}
-
-	
-
 }

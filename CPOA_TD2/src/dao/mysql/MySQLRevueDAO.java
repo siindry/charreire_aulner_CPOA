@@ -1,4 +1,4 @@
-package dao;
+package dao.mysql;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.Statement;
 import metier.Connexion;
 import metier.Revue;
 
-public class RevueDAO implements DAO<Revue>{
+public class MySQLRevueDAO /*implements IClientDAO*/{
 	
 	public Revue getById(int id) {
 		
@@ -62,7 +62,7 @@ public class RevueDAO implements DAO<Revue>{
 
 
 
-	@Override
+
 	public boolean create(Revue r1) {
 		int i = 0;
 		
@@ -101,7 +101,6 @@ public class RevueDAO implements DAO<Revue>{
 	}
 
 
-	@Override
 	public boolean update(Revue r1) {
 		int i = 0;
 		
@@ -139,7 +138,7 @@ public class RevueDAO implements DAO<Revue>{
 	}
 
 
-	@Override
+
 	public boolean delete(Revue r1) {
 		int i = 0;
 		
@@ -167,9 +166,4 @@ public class RevueDAO implements DAO<Revue>{
 	    	return true;
 	    }
 	}
-
-
-
-	
-	
 }
