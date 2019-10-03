@@ -20,7 +20,6 @@ public class gestionM {
 			switch(choix) {
 
 				case 1: c1.choixPeriodeDAO();	
-				System.out.println("salut");
 					break;
 				case 2: c1.choixRevueDAO();
 					break;
