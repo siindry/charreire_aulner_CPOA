@@ -18,7 +18,9 @@ public class gestionM {
 			ChoixDAO c1 = new ChoixDAO();
 			
 			switch(choix) {
-				case 1: c1.choixPeriodeDAO();				
+
+				case 1: c1.choixPeriodeDAO();	
+				System.out.println("salut");
 					break;
 				case 2: c1.choixRevueDAO();
 					break;
