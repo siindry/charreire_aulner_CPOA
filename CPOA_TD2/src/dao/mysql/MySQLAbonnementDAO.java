@@ -9,10 +9,25 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+import dao.IAbonnementDAO;
+import dao.connexion.Connexion;
 import metier.Abonnement;
-import metier.Connexion;
 
-public class MySQLAbonnementDAO {
+public class MySQLAbonnementDAO implements IAbonnementDAO {
+	
+	private  static MySQLAbonnementDAO dao = null;
+	
+	public MySQLAbonnementDAO() {
+		
+	}
+	
+	public static MySQLAbonnementDAO getInstance() {
+		if(dao==null)
+			dao = new MySQLAbonnementDAO();
+		
+		return dao;
+	}
+	
 	
 	public Abonnement getById(int id) {
 		

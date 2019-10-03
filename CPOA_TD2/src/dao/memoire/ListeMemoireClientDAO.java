@@ -7,6 +7,6 @@ public class ListeMemoireClientDAO {
 	public static ClientDAO getInstance() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}//COUCOU CA MOI JE VAIS FAIRE 
 
 }

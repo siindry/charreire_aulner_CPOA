@@ -6,10 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import dao.IClientDAO;
+import dao.connexion.Connexion;
 import metier.Client;
-import metier.Connexion;
 
-public class MySQLClientDAO /*implements IClientDAO*/{
+public class MySQLClientDAO implements IClientDAO{
+	
+	
+	private  static MySQLClientDAO dao = null;
+	
+	public MySQLClientDAO() {
+		
+	}
+	
+	public static MySQLClientDAO getInstance() {
+		if(dao==null)
+			dao = new MySQLClientDAO();
+		
+		return dao;
+	}
 	
 	public Client getById(int id) {
 		

@@ -1,4 +1,4 @@
-package metier;
+package dao.connexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

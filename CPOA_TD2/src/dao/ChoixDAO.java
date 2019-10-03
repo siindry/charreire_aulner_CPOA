@@ -22,17 +22,19 @@ public class ChoixDAO {
 	public void choixPeriodeDAO() {
 
 		DAOFactory doas = null;
-		System.out.println("En quel type de BdD voulez-vous éditer : 1.MYSQL 2.ListeMemoire");
+		System.out.println("En quel type de BdD voulez-vous éditer : 1.MYSQL \n 2.ListeMemoire");
 		Scanner sc = new Scanner(System.in);
 		String choixType = sc.nextLine();
 		
 		switch(choixType) {
-		case "MYSQL" : doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+		case "1" : doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 						MySQLPeriodiciteDAO pds1 = MySQLPeriodiciteDAO.getInstance();
 			break;
-		case "ListeMemoire" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
+		case "2" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
 								ListeMemoirePeriodiciteDAO pds11 = ListeMemoirePeriodiciteDAO.getInstance();
 		}
+		
+		
 		
 		
 		

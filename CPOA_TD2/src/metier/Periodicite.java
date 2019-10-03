@@ -4,6 +4,8 @@ package metier;
 import java.sql.*;
 import java.util.Scanner;
 
+import dao.connexion.Connexion;
+
 public class Periodicite {
 	
 	private int id_periode;

@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import dao.IPeriodiciteDAO;
-import metier.Connexion;
+import dao.connexion.Connexion;
 import metier.Periodicite;
 
 public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{

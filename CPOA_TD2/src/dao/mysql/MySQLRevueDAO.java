@@ -6,10 +6,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import metier.Connexion;
+import dao.IRevueDAO;
+import dao.connexion.Connexion;
 import metier.Revue;
 
-public class MySQLRevueDAO /*implements IClientDAO*/{
+public class MySQLRevueDAO implements IRevueDAO{
+	
+	private  static MySQLRevueDAO dao = null;
+	
+	public MySQLRevueDAO() {
+		
+	}
+	
+	public static MySQLRevueDAO getInstance() {
+		if(dao==null)
+			dao = new MySQLRevueDAO();
+		
+		return dao;
+	}
 	
 	public Revue getById(int id) {
 		

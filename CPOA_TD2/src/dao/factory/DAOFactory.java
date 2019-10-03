@@ -1,10 +1,9 @@
 package dao.factory;
 
-import dao.AbonnementDAO;
-import dao.ClientDAO;
+import dao.IAbonnementDAO;
+import dao.IClientDAO;
 import dao.IPeriodiciteDAO;
-import dao.PeriodiciteDAO;
-import dao.RevueDAO;
+import dao.IRevueDAO;
 import enumeration.EPersistance;
 
 public abstract class DAOFactory {
@@ -21,8 +20,10 @@ public abstract class DAOFactory {
 		}
 		return daoF;
 		}
+	
+	
 		public abstract IPeriodiciteDAO getPeriodiciteDAO();
-		public abstract RevueDAO getRevueDAO();
-		public abstract ClientDAO getClientDAO();
-		public abstract AbonnementDAO getAbonnementDAO();
+		public abstract IRevueDAO getRevueDAO();
+		public abstract IClientDAO getClientDAO();
+		public abstract IAbonnementDAO getAbonnementDAO();
 }

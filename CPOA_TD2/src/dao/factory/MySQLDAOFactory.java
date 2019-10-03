@@ -21,17 +21,17 @@ public class MySQLDAOFactory extends DAOFactory {
 	
 	
 	@Override
-	public RevueDAO getRevueDAO() {
+	public IRevueDAO getRevueDAO() {
 	return MySQLRevueDAO.getInstance();
 	}
 	
 	@Override
-	public ClientDAO getClientDAO() {
+	public IClientDAO getClientDAO() {
 		return MySQLClientDAO.getInstance();
 	}
 	
 	@Override
-	public AbonnementDAO getAbonnementDAO() {
+	public IAbonnementDAO getAbonnementDAO() {
 		return MySQLAbonnementDAO.getInstance();
 	}
 
