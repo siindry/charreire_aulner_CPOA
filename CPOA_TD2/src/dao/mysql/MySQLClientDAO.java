@@ -13,13 +13,13 @@ import metier.Client;
 public class MySQLClientDAO implements IClientDAO{
 	
 	
-	private  static MySQLClientDAO dao = null;
+	private static IClientDAO dao = null;
 	
 	public MySQLClientDAO() {
 		
 	}
 	
-	public static MySQLClientDAO getInstance() {
+	public static IClientDAO getInstance() {
 		if(dao==null)
 			dao = new MySQLClientDAO();
 		
@@ -87,7 +87,7 @@ public class MySQLClientDAO implements IClientDAO{
 	
 		
 		try {
-			PreparedStatement req = laConnexion.prepareStatement("",
+			PreparedStatement req = laConnexion.prepareStatement("insert into Client (nom,prenom,no_rue,voie,code_postal,ville,pays) value(?,?,?,?,?,?,?)",
 					 Statement.RETURN_GENERATED_KEYS);
 			
 			req.setString(1, c1.getNom());

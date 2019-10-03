@@ -19,7 +19,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		
 	}
 	
-	public static MySQLPeriodiciteDAO getInstance() {
+	public static IPeriodiciteDAO getInstance() {
 		if(dao==null)
 			dao = new MySQLPeriodiciteDAO();
 		
@@ -111,9 +111,9 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		Connection laConnexion = connection.creeConnexion();
 		
 		try {
-			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where libelle=?");
+			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where id_periodicite=?");
 				
-			req.setString(1, p1.getLibelle()); // 1 correspond au 1er para du where
+			req.setInt(1, p1.getId_periode()); // 1 correspond au 1er para du where
 			
 			i = req.executeUpdate();
 			System.out.println("ligne touch� : " + i);

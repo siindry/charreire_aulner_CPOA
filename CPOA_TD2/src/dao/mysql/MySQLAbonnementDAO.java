@@ -21,7 +21,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		
 	}
 	
-	public static MySQLAbonnementDAO getInstance() {
+	public static IAbonnementDAO getInstance() {
 		if(dao==null)
 			dao = new MySQLAbonnementDAO();
 		

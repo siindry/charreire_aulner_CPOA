@@ -1,10 +1,9 @@
 package dao.factory;
 
-import dao.AbonnementDAO;
-import dao.ClientDAO;
+import dao.IAbonnementDAO;
+import dao.IClientDAO;
 import dao.IPeriodiciteDAO;
-import dao.PeriodiciteDAO;
-import dao.RevueDAO;
+import dao.IRevueDAO;
 import dao.mysql.MySQLAbonnementDAO;
 import dao.mysql.MySQLClientDAO;
 import dao.mysql.MySQLPeriodiciteDAO;

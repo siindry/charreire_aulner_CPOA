@@ -18,7 +18,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 		
 	}
 	
-	public static MySQLRevueDAO getInstance() {
+	public static IRevueDAO getInstance() {
 		if(dao==null)
 			dao = new MySQLRevueDAO();
 		
