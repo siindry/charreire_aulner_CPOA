@@ -33,9 +33,5 @@ public class MySQLDAOFactory extends DAOFactory {
 	public IAbonnementDAO getAbonnementDAO() {
 		return MySQLAbonnementDAO.getInstance();
 	}
-
-
-	
-	
 	
 }

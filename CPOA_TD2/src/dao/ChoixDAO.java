@@ -14,7 +14,7 @@ import metier.gestionM;
 public class ChoixDAO {
 	
 	boolean reussi = false;
-	
+	DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 	
 	
 	
@@ -40,13 +40,11 @@ public class ChoixDAO {
 			default: System.out.println("Entrï¿½e inconnue");
 		
 		}
-		sc.close();
 		
 	}
 	
 	public void choixPeriodeDAO(){
 
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 		
 		
 		
@@ -114,7 +112,6 @@ public class ChoixDAO {
 				System.out.println("Ajouter avec succès");
 			else
 				System.out.println("Aucun ajout");;
-				sc3.close();
 				this.choixPeriodeDAO();
 			break;
 			
@@ -166,8 +163,9 @@ public class ChoixDAO {
 	
 	public void choixClientDAO() {
 
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+		
 		Client c1 = new Client(null, null, 0, "", null, null, null, null);
+
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
 				+ "\n 3.Supprimer \n 4.Sï¿½lectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n");
@@ -234,7 +232,6 @@ public class ChoixDAO {
 				System.out.println("Ajouter avec succès");
 			else
 				System.out.println("Aucun ajout");
-			sc3.close();
 			this.choixClientDAO();
 			break;
 			
@@ -259,6 +256,7 @@ public class ChoixDAO {
 					break;
 				case "2" :
 					doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
+					System.out.println("lsiteemememe");
 					this.choixClientDAO();
 					break;
 				default: System.out.println("Entrï¿½e inconnue");
@@ -276,7 +274,6 @@ public class ChoixDAO {
 		default: System.out.println("Entrï¿½e inconnue");
 		
 		}	
-	sc.close();
 	}
 	
 	
@@ -285,7 +282,7 @@ public class ChoixDAO {
 	
 	public void choixRevueDAO() {
 
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+
 		Revue r1 = new Revue(0, null, null, 0, null, 0);
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
@@ -297,6 +294,7 @@ public class ChoixDAO {
 		switch(choix) {
 		
 		
+		
 		case "1":
 			System.out.println("Entrez une information par ligne ces informations suivantes : titre, description, visuel, son type periodicite, tarif du nemoro :");
 			Scanner sc1 = new Scanner(System.in);
@@ -305,9 +303,11 @@ public class ChoixDAO {
 			r1.setDescription(sc1.nextLine());
 			r1.setVisuel(sc1.nextLine());
 			r1.setId_periode(sc1.nextInt());
-
-			int tar = sc1.nextInt();
-			r1.setTarif((float) tar);
+			
+			Scanner tarif = new Scanner(System.in);
+			String tar = tarif.nextLine();
+			double tar1 = Double.valueOf(tar);
+			r1.setTarif(tar1);
 			
 			reussi = doas.getRevueDAO().create(r1);
 			if(reussi==true)
@@ -329,10 +329,15 @@ public class ChoixDAO {
 			
 			Scanner sc21 = new Scanner(System.in);
 			System.out.println("Entrez les nouvelles données dans l'ordre : titre, description, tarif_numero, visuel, id_periodicite");
-			r1.setTitre(sc2.nextLine());
-			r1.setDescription(sc2.nextLine());
-			r1.setVisuel(sc2.nextLine());
-			r1.setId_periode(sc2.nextInt());
+			
+			r1.setTitre(sc21.nextLine());
+			r1.setDescription(sc21.nextLine());
+			Scanner tarif1 = new Scanner(System.in);
+			String tar11 = tarif1.nextLine();
+			double tar12 = Double.valueOf(tar11);
+			r1.setTarif(tar12);
+			r1.setVisuel(sc21.nextLine());
+			r1.setId_periode(sc21.nextInt());
 			
 			reussi = doas.getRevueDAO().update(r1);
 			if(reussi==true)
@@ -352,7 +357,6 @@ public class ChoixDAO {
 				System.out.println("Ajouter avec succès");
 			else
 				System.out.println("Aucun ajout");
-			sc3.close();
 			this.choixRevueDAO();
 			break;
 			
@@ -393,13 +397,11 @@ public class ChoixDAO {
 		default: System.out.println("Entrï¿½e inconnue");
 		
 		}	
-	sc.close();
 	}
 	
 	
 	public void choixAboDAO() {
 
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 		Abonnement a1 = new Abonnement(0, 0, null, null);
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
@@ -440,7 +442,7 @@ public class ChoixDAO {
 			
 			
 		case "2": 
-			System.out.println("Entrez l'id du client de la ligne que vous souhaiter modifier ?");
+			System.out.println("Entrez l'id du client et celui de revue pour l'abonnment que vous souhaiter modifier ?");
 			Scanner sc2 = new Scanner(System.in);
 			int idcl = sc2.nextInt();
 			
@@ -482,7 +484,6 @@ public class ChoixDAO {
 				System.out.println("Ajouter avec succès");
 			else
 				System.out.println("Aucun ajout");
-			sc3.close();
 			break;
 			
 			
@@ -522,7 +523,7 @@ public class ChoixDAO {
 		default: System.out.println("Entrï¿½e inconnue");
 		
 		}	
-	sc.close();
+
 	}
 		
 

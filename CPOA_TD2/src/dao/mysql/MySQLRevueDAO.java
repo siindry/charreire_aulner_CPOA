@@ -114,7 +114,6 @@ public class MySQLRevueDAO implements IRevueDAO{
 	    }
 	}
 
-
 	public boolean update(Revue r1) {
 		int i = 0;
 		
@@ -125,7 +124,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 			PreparedStatement req = laConnexion.prepareStatement("update Revue set titre=?, description=?, tarif_numero=?, visuel=?, id_periodicite=? where id_revue=?");
 			req.setString(1, r1.getTitre());
 			req.setString(2, r1.getDescription());
-			req.setLong(3, (long) r1.getTarif());
+			req.setDouble(3, r1.getTarif());
 			req.setString(4, r1.getVisuel());
 			req.setInt(5, r1.getId_periode());
 			
