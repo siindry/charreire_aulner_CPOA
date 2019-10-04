@@ -294,6 +294,7 @@ public class ChoixDAO {
 		switch(choix) {
 		
 		
+		
 		case "1":
 			System.out.println("Entrez une information par ligne ces informations suivantes : titre, description, visuel, son type periodicite, tarif du nemoro :");
 			Scanner sc1 = new Scanner(System.in);

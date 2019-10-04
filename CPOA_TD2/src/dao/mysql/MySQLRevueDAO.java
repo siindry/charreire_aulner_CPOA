@@ -114,7 +114,6 @@ public class MySQLRevueDAO implements IRevueDAO{
 	    }
 	}
 
-
 	public boolean update(Revue r1) {
 		int i = 0;
 		
