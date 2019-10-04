@@ -3,9 +3,10 @@ package dao.memoire;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import dao.IAbonnementDAO;
 import metier.Abonnement;
 
-public class ListeMemoireAbonnementDAO {
+public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 
 	private static ListeMemoireAbonnementDAO instance;
 	
@@ -82,8 +83,8 @@ public class ListeMemoireAbonnementDAO {
 	}
 	
 	
-	public Abonnement getById2(int idCl, int idRev) {
-		// Ne fonctionne que si l'objet métier est bien fait...
+	public Abonnement getById(int idCl) {
+		// Ne fonctionne que si l'objet métier est bien fait..
 		
 		String date1 = "2018-09-03";
 		String date2 = "2018-10-23";
@@ -91,7 +92,7 @@ public class ListeMemoireAbonnementDAO {
 		   LocalDate dateFin = LocalDate.parse(date2);
 		
 		
-		int idx = this.donnees.indexOf(new Abonnement(idCl, idRev, dateDebut, dateFin));
+		int idx = this.donnees.indexOf(new Abonnement(idCl, 2, dateDebut, dateFin));
 		if (idx == -1) {
 		throw new IllegalArgumentException("Aucun objet ne possède ces identifiants");
 		} else {
@@ -104,5 +105,9 @@ public class ListeMemoireAbonnementDAO {
 		return (ArrayList<Abonnement>) this.donnees;
 	}
 
+	
 
-}
+	
+	}
+
+

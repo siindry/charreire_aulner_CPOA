@@ -1,9 +1,11 @@
 package dao.memoire;
 import java.util.ArrayList;
+
+import dao.IPeriodiciteDAO;
 import metier.Periodicite;
 
 
-public class ListeMemoirePeriodiciteDAO {
+public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 
 
 
@@ -25,9 +27,10 @@ public class ListeMemoirePeriodiciteDAO {
 		private ListeMemoirePeriodiciteDAO() {
 
 			this.donnees = new ArrayList<Periodicite>();
-			System.out.println("ouiiiiiiiiiiiii");
+			
 			this.donnees.add(new Periodicite(1, "Mensuel"));
 			this.donnees.add(new Periodicite(2, "Quotidien"));
+			
 		}
 
 

@@ -109,7 +109,7 @@ public class ChoixDAO {
 			p1.setId_periode(id);
 			reussi= doas.getPeriodiciteDAO().delete(p1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");;
 				this.choixPeriodeDAO();
@@ -188,7 +188,7 @@ public class ChoixDAO {
 			
 			reussi = doas.getClientDAO().create(c1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixClientDAO();
@@ -216,7 +216,7 @@ public class ChoixDAO {
 			
 			reussi = doas.getClientDAO().update(c1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixClientDAO();
@@ -229,7 +229,7 @@ public class ChoixDAO {
 			c1.setId_client(sc3.nextInt());
 			reussi = doas.getClientDAO().delete(c1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixClientDAO();
@@ -256,7 +256,7 @@ public class ChoixDAO {
 					break;
 				case "2" :
 					doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
-					System.out.println("lsiteemememe");
+					System.out.println("ListeMemoire");
 					this.choixClientDAO();
 					break;
 				default: System.out.println("Entrï¿½e inconnue");
@@ -311,7 +311,7 @@ public class ChoixDAO {
 			
 			reussi = doas.getRevueDAO().create(r1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixRevueDAO();
@@ -323,7 +323,7 @@ public class ChoixDAO {
 			Scanner sc2 = new Scanner(System.in);
 			int idr = sc2.nextInt();
 			
-			System.out.println("Voici les données de la revue séléctionné");
+			System.out.println("Voici les données de la revue séléctionnée");
 			r1= doas.getRevueDAO().getById(idr);
 			r1.setId_revue(idr);
 			
@@ -341,7 +341,7 @@ public class ChoixDAO {
 			
 			reussi = doas.getRevueDAO().update(r1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixRevueDAO();
@@ -354,7 +354,7 @@ public class ChoixDAO {
 			r1.setId_revue(sc3.nextInt());
 			reussi = doas.getRevueDAO().delete(r1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixRevueDAO();
@@ -414,7 +414,7 @@ public class ChoixDAO {
 		
 		
 		case "1":
-			System.out.println("Entrez ces informations suivantes pour l'ajout d'un abonnement : id_client, id_revue, date_debut, date_fin (les dates sont aux format yyyy/MM/dd) :");
+			System.out.println("Entrez les informations suivantes pour l'ajout d'un abonnement : id_client, id_revue, date_debut, date_fin (les dates sont aux format yyyy/MM/dd) :");
 			Scanner sc1 = new Scanner(System.in);
 			
 			a1.setIdCl(sc1.nextInt());
@@ -467,7 +467,7 @@ public class ChoixDAO {
 			
 		    reussi = doas.getAbonnementDAO().update(a1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixAboDAO();
@@ -481,7 +481,7 @@ public class ChoixDAO {
 			a1.setIdRev(sc3.nextInt());
 			reussi = doas.getAbonnementDAO().delete(a1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			break;

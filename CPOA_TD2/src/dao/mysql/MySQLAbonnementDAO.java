@@ -60,7 +60,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 
 		    }
 			if (laConnexion != null) {
-				System.out.println("Fermeture de la connexion rï¿½ussie! ");
+				System.out.println("Fermeture de la connexion réussie! ");
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {

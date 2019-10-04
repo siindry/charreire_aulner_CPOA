@@ -1,18 +1,15 @@
 package dao.factory;
 
-import dao.AbonnementDAO;
-import dao.ClientDAO;
+import dao.IAbonnementDAO;
+import dao.IClientDAO;
 import dao.IPeriodiciteDAO;
-import dao.PeriodiciteDAO;
-import dao.RevueDAO;
+import dao.IRevueDAO;
 import dao.memoire.ListeMemoireAbonnementDAO;
 import dao.memoire.ListeMemoireClientDAO;
 import dao.memoire.ListeMemoirePeriodiciteDAO;
 import dao.memoire.ListeMemoireRevueDAO;
-import dao.mysql.MySQLAbonnementDAO;
-import dao.mysql.MySQLClientDAO;
-import dao.mysql.MySQLPeriodiciteDAO;
-import dao.mysql.MySQLRevueDAO;
+
+
 
 public class ListeMemoireDAOFactory extends DAOFactory {
 
@@ -23,21 +20,21 @@ public class ListeMemoireDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public RevueDAO getRevueDAO() {
+	public IRevueDAO getRevueDAO() {
 		// TODO Auto-generated method stub
 		return ListeMemoireRevueDAO.getInstance();
 	}
 
 	@Override
-	public ClientDAO getClientDAO() {
+	public IClientDAO getClientDAO() {
 		// TODO Auto-generated method stub
 		return ListeMemoireClientDAO.getInstance();
 	}
 
 	@Override
-	public AbonnementDAO getAbonnementDAO() {
+	public IAbonnementDAO getAbonnementDAO() {
 		// TODO Auto-generated method stub
-		return ListeMemoireAbonnementDAO.getInstance();
+		return ListeMemoireAbonnementDAO.getInstance(); //ancienne version
 	}
 
 }
