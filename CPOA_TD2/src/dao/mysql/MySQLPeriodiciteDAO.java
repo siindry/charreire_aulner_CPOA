@@ -168,12 +168,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 			System.out.println("Pas connect�" + sqle.getMessage());
 		}
 		
-		System.out.println("Souhaitez-vous selectionner une autre ligne ? : \n1 : oui \n2 : non");
-		Scanner sc = new Scanner(System.in);
-	    int refaire = sc.nextInt();
-	    sc.close();
-	    if(refaire==1)
-	    	this.getById(id);
+
 	    
 		return p1;
 	}
