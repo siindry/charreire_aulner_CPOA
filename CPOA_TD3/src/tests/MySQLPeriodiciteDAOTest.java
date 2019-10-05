@@ -10,7 +10,7 @@ import dao.factory.DAOFactory;
 import enumeration.EPersistance;
 import metier.Periodicite;
 
-class MySQLPeriodiciteDAOTest {
+public class MySQLPeriodiciteDAOTest {
 	
 	private DAOFactory doas;
 	
@@ -36,7 +36,7 @@ class MySQLPeriodiciteDAOTest {
 		System.out.println("\nSuppression fonctionne :");
 		
 		Periodicite ptest1 = new Periodicite(70,"Trimestriel");
-		doas.getPeriodiciteDAO().create(ptest1);
+
 		
 		assertTrue(doas.getPeriodiciteDAO().delete(ptest1));
 
@@ -55,29 +55,19 @@ class MySQLPeriodiciteDAOTest {
 
 	}
 	
-	/*@Test
-	void testDeleteNotWork() {
+	@Test
+	public void testUpdateWork() {
 		
-		System.out.println("\nSuppression fonctionne :");
+		System.out.println("\nModification fonctionne :");
 		
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 		Periodicite ptest1 = new Periodicite(70,"Trimestriel");
-		Periodicite ptest1 = new Periodicite(70,"Trimestriel");
-		doas.getPeriodiciteDAO().create(ptest1);
-		
-		assertTrue(doas.getPeriodiciteDAO().create(ptest1));
 
-	}*/
+		
+		assertNotNull(doas.getPeriodiciteDAO().update(ptest1));
+
+	}
 	
-	/*@Test
-	void testUpdateWork() {
-		
-		DAOFactory doas = DAOFactory.getDAOFactory(EPersistance.MYSQL);
-		Periodicite ptest1 = new Periodicite(0,"Trimestriel");
-		Periodicite ptest2 = new Periodicite(0,"Trimestriel");
-		assertTrue(doas.getPeriodiciteDAO().create(ptest1));
 
-	}*/
 	
 	
 	
