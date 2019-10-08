@@ -18,6 +18,11 @@ public class Periodicite {
 		this.libelle = libelle;
 	}
 	
+	public Periodicite(String libelle) {
+		super();
+		this.libelle = libelle;
+	}
+	
 
 	public int getId_periode() {
 		return id_periode;

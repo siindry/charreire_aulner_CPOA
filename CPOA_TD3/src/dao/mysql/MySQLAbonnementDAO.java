@@ -5,13 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 import dao.IAbonnementDAO;
 import dao.connexion.Connexion;
 import metier.Abonnement;
+import metier.Client;
 
 public class MySQLAbonnementDAO implements IAbonnementDAO {
 	
@@ -29,34 +32,33 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	}
 	
 	
-	public Abonnement getById(int id) {
+	public Abonnement getBy2Id(int id1, int id2) {
 		
-		Abonnement a1 = new Abonnement(id, id, null, null);
+		Abonnement a1 = new Abonnement(id1, id2, null, null);
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
 		try {
-			PreparedStatement requete = laConnexion.prepareStatement("select * from Abonnement where and id_client=?");
-					requete.setInt(1 ,id);
+			PreparedStatement requete = laConnexion.prepareStatement("select * from Abonnement where id_client=? and id_revue=?");
+					requete.setInt(1 ,id1);
+					requete.setInt(2 ,id2);
 					ResultSet res = requete.executeQuery();
 	
 		    while(res.next()) {
 		    	
 		    	a1.setIdCl(res.getInt("id_client"));
-			    System.out.println("id client : " + a1.getIdCl() );
+			    System.out.println("\nid client : " + a1.getIdCl() );
 			    
 			    a1.setIdRev(res.getInt("id_revue"));
 			    System.out.println("id revue : " + a1.getIdRev() );
 			    
-			    Date dateD = res.getDate("date_debut");
-			    LocalDate dateD1 = dateD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			    a1.setDateDeb(dateD1);
+			    LocalDate dateD = res.getDate("date_debut").toLocalDate();
+			    a1.setDateDeb(dateD);
 			    System.out.println("date début : " + a1.getDateDeb() );
 			    
-			    Date dateF = res.getDate("date_debut");
-			    LocalDate dateF1 = dateF.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			    a1.setDateFin(dateF1);
-			    System.out.println("date fin : " + a1.getDateFin() );
+			    LocalDate dateF = res.getDate("date_debut").toLocalDate();
+			    a1.setDateFin(dateF);
+			    System.out.println("date fin : " + a1.getDateFin() + "\n");
 
 		    }
 			if (laConnexion != null) {
@@ -185,4 +187,54 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	    	return true;
 	    }
 	}
+
+
+	@Override
+	public ArrayList<Abonnement> findAll() {
+		
+		ArrayList<Abonnement> listea = new ArrayList<Abonnement>();
+		Abonnement a1 = new Abonnement(0, 0, null, null);
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement requete = laConnexion.prepareStatement("select * from Abonnement");
+					ResultSet res = requete.executeQuery();
+	
+		    while(res.next()) {
+		    	
+		    	a1.setIdCl(res.getInt("id_client"));
+			    System.out.println("\nid client : " + a1.getIdCl() );
+			    
+			    a1.setIdRev(res.getInt("id_revue"));
+			    System.out.println("id revue : " + a1.getIdRev() );
+			    
+			    LocalDate dateD = res.getDate("date_debut").toLocalDate();
+			    a1.setDateDeb(dateD);
+			    System.out.println("date début : " + a1.getDateDeb() );
+			    
+			    LocalDate dateF = res.getDate("date_debut").toLocalDate();
+			    a1.setDateFin(dateF);
+			    System.out.println("date fin : " + a1.getDateFin() + "\n");
+			    
+			    listea.add(a1);
+
+		    }
+			if (laConnexion != null) {
+				System.out.println("Fermeture de la connexion réussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connectï¿½" + sqle.getMessage());
+		}
+		return listea;
+	}
+
+
+	@Override
+	public Abonnement getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,6 +1,7 @@
 package dao;
 
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.factory.DAOFactory;
@@ -9,7 +10,6 @@ import metier.Abonnement;
 import metier.Client;
 import metier.Periodicite;
 import metier.Revue;
-import metier.gestionM;
 
 public class ChoixDAO {
 	
@@ -20,8 +20,8 @@ public class ChoixDAO {
 	
 	public void choixTable() throws Exception {
 		
-		System.out.println("Choisissez une table ï¿½ ï¿½diter : \n 1.Periodicitï¿½ \n 2.Revue \n "
-				+ "3.Client \n 4.Abonnement");
+		System.out.println("Choisissez une table é éditer : \n 1.Periodicité \n 2.Revue \n "
+				+ "3.Client \n 4.Abonnement \n 5.Quitter");
 		Scanner sc = new Scanner(System.in);
 		int choix = sc.nextInt();
 
@@ -35,9 +35,12 @@ public class ChoixDAO {
 			case 3: this.choixClientDAO();
 				break;
 			case 4: this.choixAboDAO();
-								
 				break;
-			default: System.out.println("Entrï¿½e inconnue");
+			case 5 : 
+				System.out.println("Au revoir");
+				System.exit(1);			
+				break;
+			default: System.out.println("Entrée inconnue");
 		
 		}
 		
@@ -46,21 +49,14 @@ public class ChoixDAO {
 	public void choixPeriodeDAO(){
 
 		
-		
-		
 
-		/*boolean reussi= doas.getPeriodiciteDAO().update(p11);
-		if(reussi==true)
-			System.out.println("Ajouter avec succès");
-		else
-			System.out.println("Aucun ajout");*/
 		
 		
 		
 		Periodicite p1 = new Periodicite(0, "");
 		
-		System.out.println("Que souhaitez-vous faire sur la table Periodicitï¿½: \n 1.Ajouter \n 2.Modifier "
-				+ "\n 3.Supprimer \n 4.Sï¿½lectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n");
+		System.out.println("Que souhaitez-vous faire sur la table Periodicité: \n 1.Ajouter \n 2.Modifier "
+				+ "\n 3.Supprimer \n 4.Sélectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n 7.Récuperer les données dans une liste et les afficher");
 		Scanner sc25 = new Scanner(System.in);
 		String choix = sc25.nextLine();
 		
@@ -75,7 +71,7 @@ public class ChoixDAO {
 			p1.setLibelle(lib);
 			reussi = doas.getPeriodiciteDAO().create(p1);
 			if(reussi==true)
-				System.out.println("Ajouter avec succès");
+				System.out.println("Ajouté avec succès");
 			else
 				System.out.println("Aucun ajout");
 			this.choixPeriodeDAO();
@@ -89,7 +85,7 @@ public class ChoixDAO {
 			p1.setId_periode(idlib);
 			Scanner sc21 = new Scanner(System.in);
 			
-			System.out.println("Avec quel mot souhaiter vous remplacer la pï¿½riodicite ?");
+			System.out.println("Avec quel mot souhaiter vous remplacer la périodicite ?");
 			String nom_ap = sc21.nextLine();
 			p1.setLibelle(nom_ap);
 		
@@ -109,9 +105,9 @@ public class ChoixDAO {
 			p1.setId_periode(id);
 			reussi= doas.getPeriodiciteDAO().delete(p1);
 			if(reussi==true)
-				System.out.println("Ajouté avec succès");
+				System.out.println("Supprimé avec succès");
 			else
-				System.out.println("Aucun ajout");;
+				System.out.println("Aucune suppression");;
 				this.choixPeriodeDAO();
 			break;
 			
@@ -121,6 +117,7 @@ public class ChoixDAO {
 			Scanner sc4 = new Scanner(System.in);
 			int id1 = sc4.nextInt();
 			p1= doas.getPeriodiciteDAO().getById(id1);
+			this.choixPeriodeDAO();
 			break;
 			
 			
@@ -136,7 +133,7 @@ public class ChoixDAO {
 				case "2" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
 				this.choixPeriodeDAO();
 					break;
-				default: System.out.println("Entrï¿½e inconnue");
+				default: System.out.println("Entrée inconnue");
 				break;
 		
 				
@@ -152,7 +149,13 @@ public class ChoixDAO {
 			}
 			break;
 			
-		default: System.out.println("Entrï¿½e inconnue");
+		case "7":
+			ArrayList<Periodicite> l1 = null;
+			l1 = doas.getPeriodiciteDAO().findAll();
+			this.choixPeriodeDAO();
+			break;
+			
+		default: System.out.println("Entrée inconnue");
 			break;
 		
 		
@@ -168,7 +171,7 @@ public class ChoixDAO {
 
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
-				+ "\n 3.Supprimer \n 4.Sï¿½lectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n");
+				+ "\n 3.Supprimer \n 4.Sélectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n 7.Récuperer les données dans une liste et les afficher");
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
 		
@@ -259,7 +262,7 @@ public class ChoixDAO {
 					System.out.println("ListeMemoire");
 					this.choixClientDAO();
 					break;
-				default: System.out.println("Entrï¿½e inconnue");
+				default: System.out.println("Entrée inconnue");
 					break;
 			}
 		
@@ -270,8 +273,14 @@ public class ChoixDAO {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "7":
+			ArrayList<Client> l1 = null;
+			l1 = doas.getClientDAO().findAll();
+			this.choixClientDAO();
+			break;
 		
-		default: System.out.println("Entrï¿½e inconnue");
+		default: System.out.println("Entrée inconnue");
 		
 		}	
 	}
@@ -286,7 +295,7 @@ public class ChoixDAO {
 		Revue r1 = new Revue(0, null, null, 0, null, 0);
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
-				+ "\n 3.Supprimer \n 4.Sï¿½lectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n");
+				+ "\n 3.Supprimer \n 4.Sélectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n 7.Récuperer les données dans une liste et les afficher");
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
 		
@@ -362,7 +371,7 @@ public class ChoixDAO {
 			
 			
 		case "4": 
-			System.out.println("Mettez le numï¿½ro pour le titre que vous voulez choisir ?");
+			System.out.println("Mettez le numéro pour le titre que vous voulez choisir ?");
 			Scanner sc4 = new Scanner(System.in);
 			int idc = sc4.nextInt();
 			r1= doas.getRevueDAO().getById(idc);
@@ -382,7 +391,7 @@ public class ChoixDAO {
 				case "2" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
 				this.choixRevueDAO();
 					break;
-				default: System.out.println("Entrï¿½e inconnue");
+				default: System.out.println("Entrée inconnue");
 					break;
 			}	
 		
@@ -393,8 +402,14 @@ public class ChoixDAO {
 				e.printStackTrace();
 			}
 			break;
+			
+		case "7":
+			ArrayList<Revue> l1 = null;
+			l1 = doas.getRevueDAO().findAll();
+			this.choixRevueDAO();
+			break;
 		
-		default: System.out.println("Entrï¿½e inconnue");
+		default: System.out.println("Entrée inconnue");
 		
 		}	
 	}
@@ -405,7 +420,7 @@ public class ChoixDAO {
 		Abonnement a1 = new Abonnement(0, 0, null, null);
 		
 		System.out.println("Que souhaitez-vous faire sur la table Client: \n 1.Ajouter \n 2.Modifier "
-				+ "\n 3.Supprimer \n 4.Sï¿½lectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n");
+				+ "\n 3.Supprimer \n 4.Sélectionner \n 5.Choisir un mode de base de donnée \n 6.Changer de table \n 7.Récuperer les données dans une liste et les afficher");
 		Scanner sc = new Scanner(System.in);
 		String choix = sc.nextLine();
 		
@@ -442,11 +457,11 @@ public class ChoixDAO {
 			
 			
 		case "2": 
-			System.out.println("Entrez l'id du client et celui de revue pour l'abonnment que vous souhaiter modifier ?");
+			System.out.println("Entrez l'id du client pour l'abonnment que vous souhaiter modifier :");
 			Scanner sc2 = new Scanner(System.in);
 			int idcl = sc2.nextInt();
 			
-			System.out.println("\nEntrez l'id de revue de la ligne que vous souhaiter modifier ?");
+			System.out.println("\nEntrez l'id de revue :");
 			int idr1 = sc2.nextInt();
 
 			System.out.println("Entrez les nouvelles données dans l'ordre : date_debut, date_fin (les dates sont aux format yyyy-MM-jj) :");
@@ -467,9 +482,9 @@ public class ChoixDAO {
 			
 		    reussi = doas.getAbonnementDAO().update(a1);
 			if(reussi==true)
-				System.out.println("Ajouté avec succès");
+				System.out.println("Modifié avec succès");
 			else
-				System.out.println("Aucun ajout");
+				System.out.println("Aucune modification");
 			this.choixAboDAO();
 			break;
 			
@@ -481,17 +496,19 @@ public class ChoixDAO {
 			a1.setIdRev(sc3.nextInt());
 			reussi = doas.getAbonnementDAO().delete(a1);
 			if(reussi==true)
-				System.out.println("Ajouté avec succès");
+				System.out.println("Supprimé avec succès");
 			else
-				System.out.println("Aucun ajout");
+				System.out.println("Aucune suppression");
+			this.choixAboDAO();
 			break;
 			
 			
 		case "4": 
-			System.out.println("Mettez le numï¿½ro du client pour l'abonnement que vous voulez choisir :");
+			System.out.println("Mettez le numéro du client et de la revue correspondante pour l'abonnement que vous voulez choisir :");
 			Scanner sc4 = new Scanner(System.in);
-			int ida = sc4.nextInt();
-			a1 = doas.getAbonnementDAO().getById(ida);
+			int idcli = sc4.nextInt();
+			int idrv = sc4.nextInt();
+			a1 = doas.getAbonnementDAO().getBy2Id(idcli, idrv);
 			this.choixAboDAO();
 			break;
 			
@@ -508,7 +525,7 @@ public class ChoixDAO {
 				case "2" : doas = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
 				this.choixAboDAO();
 					break;
-				default: System.out.println("Entrï¿½e inconnue");
+				default: System.out.println("Entrée inconnue");
 					break;
 			}
 			
@@ -520,7 +537,13 @@ public class ChoixDAO {
 			}
 			break;
 			
-		default: System.out.println("Entrï¿½e inconnue");
+		case "7":
+			ArrayList<Abonnement> l1 = null;
+			l1 = doas.getAbonnementDAO().findAll();
+			this.choixAboDAO();
+			break;
+			
+		default: System.out.println("Entrée inconnue");
 		
 		}	
 

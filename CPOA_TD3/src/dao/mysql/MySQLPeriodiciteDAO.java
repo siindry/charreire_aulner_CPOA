@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import dao.IPeriodiciteDAO;
 import dao.connexion.Connexion;
+import metier.Client;
 import metier.Periodicite;
 
 public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
@@ -41,7 +43,8 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 					 Statement.RETURN_GENERATED_KEYS);
 			
 			req.setString(1, p1.getLibelle());
-				
+			
+
 			i = req.executeUpdate();
 			System.out.println("ligne touch� : " + i);
 			
@@ -73,7 +76,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		Connection laConnexion = connection.creeConnexion();
 		
 		try {
-			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where id_periodicite=?");
+			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where id_periodicite=?", Statement.RETURN_GENERATED_KEYS);
 				
 			req.setString(1, p1.getLibelle());
 			req.setInt(2, p1.getId_periode());
@@ -140,17 +143,20 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 
 	public Periodicite getById(int id){
 		
-		Periodicite p1 = new Periodicite(0, null);
+		Periodicite p1 = null;
 		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
+
 		
 		try {
 			PreparedStatement requete = laConnexion.prepareStatement("select id_periodicite,libelle from Periodicite where id_periodicite=?");
 					requete.setInt(1, id);
 					ResultSet res = requete.executeQuery();
+
 					
-		    while(res.next()) {
+		    if(res.next()) {
+		    	p1 = new Periodicite(0, null);
 		    	System.out.println("Ligne trouvé : \n"); 
 		    	
 		         p1.setId_periode(res.getInt("id_periodicite"));
@@ -160,26 +166,94 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		         System.out.println("libelle : " + p1.getLibelle() + "\n");
 		    }
 		    
+
+		    System.out.println(p1.getId_periode());
 		if (laConnexion != null) {
 			System.out.println("Fermeture de la connexion r�ussie! ");
 			laConnexion.close();
-		}	
+		}	 
 		} catch (SQLException sqle) {
 			System.out.println("Pas connect�" + sqle.getMessage());
 		}
 		
-		System.out.println("Souhaitez-vous selectionner une autre ligne ? : \n1 : oui \n2 : non");
-		Scanner sc = new Scanner(System.in);
-	    int refaire = sc.nextInt();
-	    sc.close();
-	    if(refaire==1)
-	    	this.getById(id);
-	    
+
 		return p1;
 	}
 
+	public int createGetKey(Periodicite p1) {
 
+		int key = 0;
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+	
+		
+		try {
+			PreparedStatement req = laConnexion.prepareStatement("insert into Periodicite (libelle) value(?)",
+					 Statement.RETURN_GENERATED_KEYS);
+			
+			req.setString(1, p1.getLibelle());
+			
 
+			req.executeUpdate();
+			ResultSet rs = req.getGeneratedKeys();
+
+			while (rs.next()) {
+				 key = rs.getInt(1); 
+			}
+			if (laConnexion != null) {
+				System.out.println("Fermeture r�ussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+		System.out.println("key : " + key);
+	    return key;
+
+		
+	}
+
+	public boolean equals(Periodicite obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	public ArrayList<Periodicite> findAll() {
+		
+		ArrayList<Periodicite> listec = new ArrayList<Periodicite>();
+		Periodicite c1 = new Periodicite(0, null);
+		listec.add(c1);
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement requete = laConnexion.prepareStatement("select * from Periodicite");
+					ResultSet res = requete.executeQuery();
+	
+		    while(res.next()) {
+		    	
+		    	c1.setId_periode(res.getInt("id_periodicite"));
+			    System.out.println("id : " + c1.getId_periode() );
+			    
+			    c1.setLibelle(res.getString("libelle"));
+			    System.out.println("nom : " + c1.getLibelle() + "\n");
+			    
+			    listec.add(c1);
+		    }
+			
+			if (laConnexion != null) {
+				System.out.println("Fermeture de la connexion r�ussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+		
+		return listec;
+	}
+	
+	
 
 
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dao.IAbonnementDAO;
 import metier.Abonnement;
 
+
 public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 
 	private static ListeMemoireAbonnementDAO instance;
@@ -29,80 +30,130 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 		
 		String date1 = "2018-09-03";
 		String date2 = "2018-10-23";
-		LocalDate dateDebut = LocalDate.parse(date1);
-		   LocalDate dateFin = LocalDate.parse(date2);
+		LocalDate dateDebut1 = LocalDate.parse(date1);
+		LocalDate dateFin2 = LocalDate.parse(date2);
 		
-		this.donnees.add(new Abonnement(1, 2, dateDebut, dateFin));
-		this.donnees.add(new Abonnement(2, 3, dateDebut, dateFin));
+		String date3 = "2017-01-25";
+		String date4 = "2019-03-25";
+		LocalDate dateDebut3 = LocalDate.parse(date3);
+		LocalDate dateFin4 = LocalDate.parse(date4);
+		
+		this.donnees.add(new Abonnement(1, 2, dateDebut1, dateFin2));
+		this.donnees.add(new Abonnement(2, 3, dateDebut3, dateFin4));
 	}
 	
 	
 	
-	public boolean create(Abonnement objet) {
+	public boolean update(Abonnement a1) {
 		
-		objet.setIdCl(3);
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
-		while (this.donnees.contains(objet)) {
 		
-		objet.setIdCl(objet.getIdCl() + 1);
-		}
-		boolean ok = this.donnees.add(objet);
+		int compt = 0;
+		int idab = a1.getIdCl();
+		int idrv = a1.getIdRev();
+		boolean exist = false;
 		
-		return ok;
-	}
-	
-	
-	public boolean update(Abonnement objet) {
-	
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
-		int idx = this.donnees.indexOf(objet);
-		if (idx == -1) {
-		throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
-		} else {
-		
-		this.donnees.set(idx, objet);
+		while(exist==false && compt < this.donnees.size()) {
+			if(this.donnees.get(compt).getIdCl() == idab && this.donnees.get(compt).getIdRev() == idrv) {
+				a1 = this.donnees.set(compt, a1);
+				exist=true;
+			}
+			else
+				compt++;
 		}
 		
-		return true;
+		if(compt >= this.donnees.size()) {
+			exist = false;
+			throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc échoué");
+		}
+		return exist;
+		
 	}
 	
 	
-	public boolean delete(Abonnement objet) {
-	
-		Abonnement supprime;
+	public boolean create(Abonnement a1) {
 		
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait...
-		int idx = this.donnees.indexOf(objet);
-		if (idx == -1) {
-		throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");
-		} else {
-		supprime = this.donnees.remove(idx);
+		boolean fait = this.donnees.add(a1);
+		return fait;
+	}
+	
+	
+	
+	public boolean delete(Abonnement a1) {
+		
+		int compt = 0;
+		int idab = a1.getIdCl();
+		int idrv = a1.getIdRev();
+		boolean exist = false;
+			
+		while(exist==false && compt < this.donnees.size()) {
+			if(this.donnees.get(compt).getIdCl() == idab && this.donnees.get(compt).getIdRev() == idrv) {
+				a1 = this.donnees.remove(compt);
+				exist=true;
+			}
+			else
+				compt++;
 		}
 		
-		return objet.equals(supprime);
-	}
-	
-	
-	public Abonnement getById(int idCl) {
-		// Ne fonctionne que si l'objet mÃ©tier est bien fait..
+
 		
-		String date1 = "2018-09-03";
-		String date2 = "2018-10-23";
-		LocalDate dateDebut = LocalDate.parse(date1);
-		   LocalDate dateFin = LocalDate.parse(date2);
-		
-		
-		int idx = this.donnees.indexOf(new Abonnement(idCl, 2, dateDebut, dateFin));
-		if (idx == -1) {
-		throw new IllegalArgumentException("Aucun objet ne possÃ¨de ces identifiants");
-		} else {
-		return this.donnees.get(idx);
+		if(compt > this.donnees.size()) {
+			exist = false;
+			throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc échoué");
 		}
+		return exist;
 	}
 	
+	public Abonnement getBy2Id(int id1, int id2) {
+		
+		Abonnement a1 = new Abonnement(0, 0, null, null);
+		boolean exist= false;
+		int compt = 0;
+		
+		while(exist==false && compt < this.donnees.size()) {
+			if(this.donnees.get(compt).getIdCl() == id1 && this.donnees.get(compt).getIdRev() == id2) {
+				a1 = this.donnees.get(compt);
+				System.out.println("\n" + "Numero du client : " + a1.getIdCl() + "\n"  + "Numero de revue : " + a1.getIdRev() + "\n" + "Date début : "  + a1.getDateDeb() +
+						"\n" + "Date fin : " + a1.getDateFin() + "\n");
+				exist = true;
+			}
+			else
+				compt++;
+		}
+		
+		if(compt >= this.donnees.size()) {
+			System.out.println("Aucune ligne trouvé avec cet id.");
+		}
+		
+		return a1;
+		
+	}
+
 	
 	public ArrayList<Abonnement> findAll() {
+		
+		Abonnement a1 = new Abonnement(0, 0, null, null);
+		boolean exist= false;
+		int compt = 0;
+		
+		while(exist==false && compt < this.donnees.size()) {
+			a1 = this.donnees.get(compt);
+			System.out.println("\n" + "Numero du client : " + a1.getIdCl() + "\n"  + "Numero de revue : " + a1.getIdRev() + "\n" + "Date début : "  + a1.getDateDeb() +
+					"\n" + "Date fin : " + a1.getDateFin() + "\n");
+			compt++;
+
+		}
+		
+		if(compt >= this.donnees.size()) {
+			System.out.println("Fin de la table.");
+		}
+		
 		return (ArrayList<Abonnement>) this.donnees;
+	}
+
+	@Override
+	public Abonnement getById(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

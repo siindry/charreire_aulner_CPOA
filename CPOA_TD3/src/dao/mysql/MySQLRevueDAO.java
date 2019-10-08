@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import dao.IRevueDAO;
 import dao.connexion.Connexion;
+import metier.Periodicite;
 import metier.Revue;
 
 public class MySQLRevueDAO implements IRevueDAO{
@@ -178,5 +180,95 @@ public class MySQLRevueDAO implements IRevueDAO{
 	    else {
 	    	return true;
 	    }
+	}
+	
+	
+	public int createGetKey(Revue r1) {
+
+		int key = 0;
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+	
+		
+		try {
+			PreparedStatement req = laConnexion.prepareStatement("insert into Revue (titre, description, tarif_numero, visuel, id_periodicite) values(?,?,?,?,?)",
+					 Statement.RETURN_GENERATED_KEYS);
+			
+			req.setString(1, r1.getDescription());
+			req.setString(2, r1.getDescription());
+			req.setDouble(3, r1.getTarif());
+			req.setString(4, r1.getVisuel());
+			req.setInt(5, r1.getId_periode());
+			
+
+			req.executeUpdate();
+			ResultSet rs = req.getGeneratedKeys();
+
+			while (rs.next()) {
+				 key = rs.getInt(1); 
+			}
+			if (laConnexion != null) {
+				System.out.println("Fermeture r�ussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+		System.out.println("key : " + key);
+	    return key;
+
+		
+	}
+
+	public boolean equals(Revue obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+	
+	@Override
+	public ArrayList<Revue> findAll() {
+		
+		ArrayList<Revue> listec = new ArrayList<Revue>();
+		Revue r1 = new Revue(0, null, null, 0, null, 0);
+		listec.add(r1);
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement requete = laConnexion.prepareStatement("select * from Revue");
+					ResultSet res = requete.executeQuery();
+	
+		    while(res.next()) {
+		    	
+		    	r1.setId_revue(res.getInt("id_revue"));
+			    System.out.println("id : " + r1.getId_revue() );
+			    
+			    r1.setTitre(res.getString("titre"));
+			    System.out.println("titre : " + r1.getTitre() );
+			    
+			    r1.setDescription(res.getString("description"));
+			    System.out.println("description : " + r1.getDescription() );
+			    
+			    r1.setTarif(res.getInt("tarif_numero"));
+			    System.out.println("tarif_numero : " + r1.getTarif() );
+			    
+			    r1.setVisuel(res.getString("visuel"));
+			    System.out.println("visuel : " + r1.getVisuel());
+			    
+			    r1.setId_periode(res.getInt("id_periodicite"));
+			    System.out.println("id_periodicite : " + r1.getId_periode() );
+			    
+			    listec.add(r1);
+		    }
+			
+			if (laConnexion != null) {
+				System.out.println("Fermeture de la connexion r�ussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Pas connect�" + sqle.getMessage());
+		}
+		
+		return listec;
 	}
 }

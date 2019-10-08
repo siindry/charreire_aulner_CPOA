@@ -34,66 +34,139 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 		}
 
 
-
-		public boolean create(Periodicite objet) {
-
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			while (this.donnees.contains(objet)) {
-
-				objet.setId_periode(objet.getId_periode() + 1);
+		
+		
+		public boolean update(Periodicite p1) {
+			
+			
+			int compt = 0;
+			int id = p1.getId_periode();
+			boolean exist = false;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_periode() == id) {
+					p1 = this.donnees.set(compt, p1);
+					exist=true;
+				}
+				else
+					compt++;
 			}
-			boolean ok = this.donnees.add(objet);
 			
-			return ok;
+			if(compt >= this.donnees.size()) {
+				exist = false;
+				throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc ÈchouÈ");
+			}
+			return exist;
+			
 		}
-
-
-		public boolean update(Periodicite objet) {
+		
+		
+		public boolean create(Periodicite p1) {
 			
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(objet);
-			if (idx == -1) {
-				throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
-			} else {
+
+			p1.setId_periode(this.donnees.size()+1);
+			boolean fait = this.donnees.add(p1);
+			return fait;
+		}
+		
+		
+		
+		public boolean delete(Periodicite p1) {
+			
+			int compt = 0;
+			int id = p1.getId_periode();
+			boolean exist = false;
 				
-				this.donnees.set(idx, objet);
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_periode() == id) {
+					
+					p1 = this.donnees.remove(compt);
+					exist=true;
+				}
+				else
+					compt++;
 			}
 			
-			return true;
-		}
-
-
-		public boolean delete(Periodicite objet) {
-
-			Periodicite supprime;
-			
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(objet);
-			if (idx == -1) {
-				throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");
-			} else {
-				supprime = this.donnees.remove(idx);
+			if(compt == this.donnees.size()) {
+				exist = false;
+				System.out.println("-- ! -- Votre Èlement est en fin de liste veuillez d'abord ajouter un autre Èlement aprËs celui-ci");
 			}
 			
-			return objet.equals(supprime);
+			if(compt > this.donnees.size()) {
+				exist = false;
+				throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc ÈchouÈ");
+			}
+			return exist;
 		}
-
-
+		
 		public Periodicite getById(int id) {
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(new Periodicite(id, "test"));
-			if (idx == -1) {
-				throw new IllegalArgumentException("Aucun objet ne poss√®de cet identifiant");
-			} else {
-				return this.donnees.get(idx);
+			
+			Periodicite p1 = new Periodicite(null);
+			boolean exist= false;
+			int compt = 0;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_periode() == id) {
+					p1 = this.donnees.get(compt);
+					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+					exist = true;
+				}
+				else
+					compt++;
 			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Aucune ligne trouvÈ avec cet id.");
+			}
+			
+			return p1;
+			
 		}
 
-
+		@Override
+		public int createGetKey(Periodicite objet) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
 		public ArrayList<Periodicite> findAll() {
+			
+			Periodicite p1 = new Periodicite(1, null);
+			boolean exist= false;
+			int compt = 0;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				p1 = this.donnees.get(compt);
+				System.out.println("\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+				compt++;
+
+			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Fin de la ligne.");
+			}
+			
 			return (ArrayList<Periodicite>) this.donnees;
 		}
-	}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+}
 
 	
 

@@ -3,6 +3,7 @@ package dao.memoire;
 import java.util.ArrayList;
 import dao.IRevueDAO;
 import metier.Revue;
+import metier.Revue;
 
 public class ListeMemoireRevueDAO implements IRevueDAO{
 	
@@ -31,63 +32,111 @@ public class ListeMemoireRevueDAO implements IRevueDAO{
 
 
 
-		public boolean create(Revue objet) {
 
-			objet.setId_revue(3);
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			while (this.donnees.contains(objet)) {
-
-				objet.setId_periode(objet.getId_periode() + 1);
+		public boolean update(Revue r1) {
+			
+			
+			int compt = 0;
+			int id = r1.getId_revue();
+			boolean exist = false;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_revue() == id) {
+					r1 = this.donnees.set(compt, r1);
+					exist=true;
+				}
+				else
+					compt++;
 			}
-			boolean ok = this.donnees.add(objet);
 			
-			return ok;
+			if(compt >= this.donnees.size()) {
+				exist = false;
+				throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc ÈchouÈ");
+			}
+			return exist;
+			
 		}
-
-
-		public boolean update(Revue objet) {
+		
+		
+		public boolean create(Revue r1) {
 			
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(objet);
-			if (idx == -1) {
-				throw new IllegalArgumentException("Tentative de modification d'un objet inexistant");
-			} else {
+
+			r1.setId_revue(this.donnees.size()+1);
+			boolean fait = this.donnees.add(r1);
+			return fait;
+		}
+		
+		
+		
+		public boolean delete(Revue r1) {
+			
+			int compt = 0;
+			int id = r1.getId_revue();
+			boolean exist = false;
 				
-				this.donnees.set(idx, objet);
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_revue() == id) {
+					
+					r1 = this.donnees.remove(compt);
+					exist=true;
+				}
+				else
+					compt++;
 			}
 			
-			return true;
-		}
 
-
-		public boolean delete(Revue objet) {
-
-			Revue supprime;
 			
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(objet);
-			if (idx == -1) {
-				throw new IllegalArgumentException("Tentative de suppression d'un objet inexistant");
-			} else {
-				supprime = this.donnees.remove(idx);
+			if(compt > this.donnees.size()) {
+				exist = false;
+				throw new IllegalArgumentException("Votre objet n'existe pas, votre requete a donc ÈchouÈ");
 			}
-			
-			return objet.equals(supprime);
+			return exist;
 		}
-
-
+		
 		public Revue getById(int id) {
-			// Ne fonctionne que si l'objet m√©tier est bien fait...
-			int idx = this.donnees.indexOf(new Revue(id, "test", "test2", 0, "test.jpg", 0));
-			if (idx == -1) {
-				throw new IllegalArgumentException("Aucun objet ne poss√®de cet identifiant");
-			} else {
-				return this.donnees.get(idx);
+			
+			Revue r1 = new Revue(0, null, null, 0, null, 0);
+			boolean exist= false;
+			int compt = 0;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getId_revue() == id) {
+					r1 = this.donnees.get(compt);
+					System.out.println("\n" + "Id" + r1.getId_revue() + "\n"  + "Titre" + r1.getTitre() + "\n" + "Descritpion"  + r1.getDescription() +
+							"\n" + "Tarif" + r1.getTarif() + "\n" + "Visuel" + r1.getVisuel() + "\n" + "Id periodicite" + r1.getId_periode() + "\n");
+					exist = true;
+				}
+				else
+					compt++;
 			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Aucune ligne trouvÈ avec cet id.");
+			}
+			
+			return r1;
+			
 		}
 
-
+		
 		public ArrayList<Revue> findAll() {
+			
+			Revue r1 = new Revue(0, null, null, 0, null, 0);
+			boolean exist= false;
+			int compt = 0;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				r1 = this.donnees.get(compt);
+				System.out.println("\n" + "Id" + r1.getId_revue() + "\n"  + "Titre" + r1.getTitre() + "\n" + "Descritpion"  + r1.getDescription() +
+						"\n" + "Tarif" + r1.getTarif() + "\n" + "Visuel" + r1.getVisuel() + "\n" + "Id periodicite" + r1.getId_periode() + "\n");
+				compt++;
+
+			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Fin de la ligne.");
+			}
+			
 			return (ArrayList<Revue>) this.donnees;
 		}
 	 
