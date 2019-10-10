@@ -48,16 +48,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		assertTrue(doas.getPeriodiciteDAO().delete(ptest));
 	}
 	
-	/*@Test
-	public void testDeleteNotWorkNoId() {
-	//attention : 2 à rentrer! 
-		
-		System.out.println("\nSuppression fonctionne pas id:");
-		
-		Periodicite ptest1 = new Periodicite(-1, "Deletation");
 
-		assertFalse(doas.getPeriodiciteDAO().delete(ptest1));
-	}*/
 	
 	@Test
 	public void testGetWork() {
@@ -72,16 +63,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 
 	}
 	
-	/*@Test
-	public void testGetNotWorkNoId() {
-		
-		System.out.println("\nRecherche fonctionne pas id:");
-		
-		int id = -1;
-		
-		assertNull(doas.getPeriodiciteDAO().getById(id));
 
-	}*/
 	
 	@Test
 	public void testUpdateWork() {
@@ -96,18 +78,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 	
 	}
 	
-	
-	/*@Test
-	public void testUpdateNotWorkNoId() {
-		
-		System.out.println("\nModification fonctionne pas id :");
-		
-		Periodicite ptest1 = new Periodicite(14,"test4");
-		int id = doas.getPeriodiciteDAO().createGetKey(ptest1);
-		ptest1.setId_periode(id);
 
-		assertFalse(doas.getPeriodiciteDAO().update(ptest1));
-	}*/
 	
 	@Test 
 	public void testFindAll() {
@@ -117,24 +88,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		assertNotNull(doas.getPeriodiciteDAO().findAll());
 	}
 	
-	
-	/*public void testUpdateNotWorkDup() {
-		
-		System.out.println("\nModification fonctionne pas dup :");
-		
-		Periodicite ptest1 = new Periodicite(0,"salutcestcool");
-		int cle = doas.getPeriodiciteDAO().createGetKey(ptest1);
-		Periodicite ptest2 = doas.getPeriodiciteDAO().getById(cle);
-		
-		String strtest1 = ptest1.getLibelle();
-		String strtest2 = ptest2.getLibelle();
-		
-		if(strtest1.equals(strtest2)) {
-			fail("Le nom est le meme");
-			
-		}
-		
-	}*/
+
 }
 
 
