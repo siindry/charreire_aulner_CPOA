@@ -124,10 +124,14 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 		}
 
 		@Override
-		public int createGetKey(Periodicite objet) {
-			// TODO Auto-generated method stub
-			return 0;
+		public int createGetKey(Periodicite p1) {
+			p1.setId_periode(this.donnees.size()+1);
+			this.donnees.add(p1);
+			int id = p1.getId_periode();
+			return id;
 		}
+		
+		
 		
 		public ArrayList<Periodicite> findAll() {
 			

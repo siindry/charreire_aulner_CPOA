@@ -87,7 +87,6 @@ public class MySQLPeriodiciteDAOTest {
 		
 		Periodicite ptest1 = new Periodicite(12,"salutcestcool");
 
-		
 		assertTrue(doas.getPeriodiciteDAO().update(ptest1));
 
 	}
