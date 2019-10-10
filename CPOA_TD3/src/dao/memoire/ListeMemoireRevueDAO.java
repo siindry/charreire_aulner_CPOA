@@ -139,6 +139,12 @@ public class ListeMemoireRevueDAO implements IRevueDAO{
 			
 			return (ArrayList<Revue>) this.donnees;
 		}
+
+		@Override
+		public int createGetKey(Revue ptest1) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	 
 	
 }

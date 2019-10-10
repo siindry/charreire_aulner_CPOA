@@ -72,7 +72,7 @@ public class MySQLClientDAO implements IClientDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return c1;
@@ -109,7 +109,7 @@ public class MySQLClientDAO implements IClientDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 	    
@@ -149,7 +149,7 @@ public class MySQLClientDAO implements IClientDAO{
 		}	
 		
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -178,7 +178,7 @@ public class MySQLClientDAO implements IClientDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -221,7 +221,7 @@ public class MySQLClientDAO implements IClientDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		System.out.println("key : " + key);
 	    return key;
@@ -281,7 +281,7 @@ public class MySQLClientDAO implements IClientDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return listec;

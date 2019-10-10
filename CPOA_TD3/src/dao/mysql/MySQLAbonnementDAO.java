@@ -66,7 +66,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return a1;
@@ -105,9 +105,10 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 				}	
 				
 			} catch (SQLException sqle) {
-				System.out.println("Pas connect�" + sqle.getMessage());
+				System.out.println("Erreur : " + sqle.getMessage());
+				return false;
 		}
-		return false;
+		return true;
 	}
 
 
@@ -145,7 +146,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		}	
 		
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -178,7 +179,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 			}	
 			
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -225,7 +226,7 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		return listea;
 	}
@@ -235,6 +236,54 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	public Abonnement getById(int id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public ArrayList<Integer> createGetKey(Abonnement a1) {
+		
+		ArrayList<Integer> keys = new ArrayList<Integer>();
+		
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		LocalDate date1 = a1.getDateDeb();
+		LocalDate date2 = a1.getDateFin();
+		
+		java.sql.Date dateS = java.sql.Date.valueOf(date1);
+		java.sql.Date dateU = java.sql.Date.valueOf(date2);
+		
+
+
+		
+	    try {
+	    	
+				PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (id_client,id_revue,date_debut,date_fin) value(?,?,?,?)",
+						 Statement.RETURN_GENERATED_KEYS);
+				
+				req.setInt(1, a1.getIdCl());
+				req.setInt(2, a1.getIdRev());
+				req.setDate(3, dateS);
+				req.setDate(4, dateU);
+				
+				req.executeUpdate();
+				ResultSet rs = req.getGeneratedKeys();
+
+				while (rs.next()) {
+					 int cle1 = rs.getInt(1);
+					 keys.add(cle1);
+					 int cle2 = rs.getInt(2);
+					 keys.add(cle2);
+				}
+				
+				if (laConnexion != null) {
+					System.out.println("Fermeture r�ussie! ");
+					laConnexion.close();
+				}	
+				
+			} catch (SQLException sqle) {
+				System.out.println("Erreur : " + sqle.getMessage());
+		}
+		return keys;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.junit.Test;
 import dao.factory.DAOFactory;
 import enumeration.EPersistance;
 import metier.Periodicite;
+import metier.Revue;
 
 public class MySQLPeriodiciteDAOTest {
 	
@@ -27,6 +28,7 @@ public class MySQLPeriodiciteDAOTest {
 		Periodicite ptest1 = new Periodicite(0,"Trimestriel");
 
 		assertTrue(doas.getPeriodiciteDAO().create(ptest1));
+		doas.getPeriodiciteDAO().delete(ptest1);
 	}
 	
 
@@ -66,6 +68,7 @@ public class MySQLPeriodiciteDAOTest {
 		int id = ptest1.getId_periode();
 		
 		assertNotNull(doas.getPeriodiciteDAO().getById(id));
+		doas.getPeriodiciteDAO().delete(ptest1);
 
 	}
 	
@@ -75,8 +78,11 @@ public class MySQLPeriodiciteDAOTest {
 		System.out.println("\nRecherche fonctionne pas id:");
 		
 		int id = -1;
+		Periodicite ptest1 = doas.getPeriodiciteDAO().getById(id);
 		
-		assertNull(doas.getPeriodiciteDAO().getById(id));
+		boolean rempli = ptest1.getLibelle()=="";
+		assertTrue(rempli);
+		
 
 	}
 	
@@ -85,9 +91,13 @@ public class MySQLPeriodiciteDAOTest {
 		
 		System.out.println("\nModification fonctionne :");
 		
-		Periodicite ptest1 = new Periodicite(12,"salutcestcool");
+		Periodicite ptest1 = new Periodicite(0, "libelle");
+		int cle = doas.getPeriodiciteDAO().createGetKey(ptest1);
+		Periodicite ptest2 = new Periodicite(cle, "Nouveau libelle");
 
-		assertTrue(doas.getPeriodiciteDAO().update(ptest1));
+
+		assertTrue(doas.getPeriodiciteDAO().update(ptest2));
+		doas.getPeriodiciteDAO().delete(ptest2);
 
 	}
 	
@@ -116,6 +126,8 @@ public class MySQLPeriodiciteDAOTest {
 		String strtest2 = ptest2.getLibelle();
 		
 		if(strtest1.equals(strtest2)) {
+			System.out.println("Le nom est le meme le test foctionne");
+			doas.getPeriodiciteDAO().delete(ptest1);
 			fail("Le nom est le meme");
 		}
 			

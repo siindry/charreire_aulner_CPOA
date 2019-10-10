@@ -156,6 +156,12 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 		return null;
 	}
 
+	@Override
+	public ArrayList<Integer> createGetKey(Abonnement atest1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 	

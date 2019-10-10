@@ -53,7 +53,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 	    
@@ -90,7 +90,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 			
 		}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		 if(i==0)
@@ -127,7 +127,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 			}	
 			
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 	    if(i==0)
 	    	return false;
@@ -143,7 +143,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 
 	public Periodicite getById(int id){
 		
-		Periodicite p1 = null;
+		Periodicite p1 = new Periodicite(id, "");
 		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
@@ -167,13 +167,13 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		    }
 		    
 
-		    System.out.println(p1.getId_periode());
+		   
 		if (laConnexion != null) {
 			System.out.println("Fermeture de la connexion r�ussie! ");
 			laConnexion.close();
 		}	 
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 
@@ -205,7 +205,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		System.out.println("key : " + key);
 	    return key;
@@ -247,7 +247,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return listec;

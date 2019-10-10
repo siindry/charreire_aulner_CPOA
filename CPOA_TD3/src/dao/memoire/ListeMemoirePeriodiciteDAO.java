@@ -141,7 +141,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			
 			while(exist==false && compt < this.donnees.size()) {
 				p1 = this.donnees.get(compt);
-				System.out.println("\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+				System.out.println("\n" + "Id : " + p1.getId_periode() + "\n Libelle : " + p1.getLibelle() + "\n");
 				compt++;
 
 			}

@@ -29,7 +29,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 	
 	public Revue getById(int id) {
 		
-		Revue r1 = new Revue(id, null, null, id, null, id);
+		Revue r1 = new Revue(id, null, null, 0, null, 0);
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
@@ -65,7 +65,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return r1;
@@ -105,7 +105,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 	    
@@ -142,7 +142,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 		}	
 		
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -172,7 +172,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		if(i==0)
@@ -212,7 +212,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		System.out.println("key : " + key);
 	    return key;
@@ -266,7 +266,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 				laConnexion.close();
 			}	
 		} catch (SQLException sqle) {
-			System.out.println("Pas connect�" + sqle.getMessage());
+			System.out.println("Erreur : " + sqle.getMessage());
 		}
 		
 		return listec;
