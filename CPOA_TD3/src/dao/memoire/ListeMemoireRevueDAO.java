@@ -3,7 +3,6 @@ package dao.memoire;
 import java.util.ArrayList;
 import dao.IRevueDAO;
 import metier.Revue;
-import metier.Revue;
 
 public class ListeMemoireRevueDAO implements IRevueDAO{
 	

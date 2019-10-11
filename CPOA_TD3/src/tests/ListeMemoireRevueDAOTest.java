@@ -33,18 +33,6 @@ public class ListeMemoireRevueDAOTest {
 	
 
 	
-	@Test
-	public void testDeleteWork() {
-		
-		System.out.println("\nSuppression fonctionne :");
-		
-		Revue rtest1 = new Revue(0, "Titre", "Description", 0, "visuel.jpg", 0);
-		int cle = doas.getRevueDAO().createGetKey(rtest1);
-
-		rtest1.setId_revue(cle);
-		Revue rtest2 = doas.getRevueDAO().getById(cle);
-		assertTrue(doas.getRevueDAO().delete(rtest2));
-	}
 	
 	@Test
 	public void testDeleteNotWorkNoId() {
@@ -85,21 +73,7 @@ public class ListeMemoireRevueDAOTest {
 
 	}
 	
-	@Test
-	public void testUpdateWork() {
-		
-		System.out.println("\nModification fonctionne :");
-		
-		Revue rtest1 = new Revue(0, "Titre", "Description", 0, "visuel.jpg", 1);
-		int cle = doas.getRevueDAO().createGetKey(rtest1);
-		Revue rtest2 = new Revue(cle, "Nouveau titre", "Nouvelle Description", 1, "Nouveau visuel", 3);
-
-		assertTrue(doas.getRevueDAO().update(rtest2));
-		doas.getRevueDAO().delete(rtest2);
-	}
 	
-
-		
 	
 	
 	@Test

@@ -29,20 +29,6 @@ public class ListeMemoireClientDAOTest {
 	}
 
 	
-	@Test
-	public void testDeleteWork() {
-		
-		System.out.println("\nSuppression fonctionne :");
-		
-		Client ctest1 = new Client("JEAN","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
-		Client ctest2 = new Client("JEANNE","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
-		
-		if(doas.getClientDAO().create(ctest1)==false) {
-			System.out.println("Cette erreur est normale");
-		}
-
-		assertTrue(doas.getClientDAO().delete(ctest1));
-	}
 
 	@Test
 	public void testGetWork() {
