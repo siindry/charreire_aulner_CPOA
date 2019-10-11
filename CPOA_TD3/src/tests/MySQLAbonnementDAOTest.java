@@ -177,7 +177,7 @@ private DAOFactory doas;
 		LocalDate strDateF2 = atest2.getDateFin();
 		
 		if(strDateD1.equals(strDateD2) || strDateF1.equals(strDateF2)) {
-			System.out.println("Le nom est le meme le test foctionne");
+			System.out.println("Le nom est le meme, le test foctionne");
 			doas.getAbonnementDAO().delete(atest1);
 			fail("Le nom est le meme");
 		}

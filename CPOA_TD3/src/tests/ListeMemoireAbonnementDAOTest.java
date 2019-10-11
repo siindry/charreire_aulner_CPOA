@@ -30,9 +30,10 @@ public class ListeMemoireAbonnementDAOTest {
 		LocalDate dateDebut1 = LocalDate.parse(date1);
 		LocalDate dateFin2 = LocalDate.parse(date2);
 		
-		Abonnement ptest1 = new Abonnement(0, 0, dateDebut1, dateFin2);
+		Abonnement atest1 = new Abonnement(0, 0, dateDebut1, dateFin2);
 
-		assertTrue(doas.getAbonnementDAO().create(ptest1));
+		assertTrue(doas.getAbonnementDAO().create(atest1));
+		doas.getAbonnementDAO().delete(atest1);
 	}
 
 	

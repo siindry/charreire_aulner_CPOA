@@ -2,7 +2,6 @@ package tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -12,7 +11,6 @@ import org.junit.Test;
 import dao.factory.DAOFactory;
 import enumeration.EPersistance;
 import metier.Client;
-import metier.Periodicite;
 
 public class MySQLClientDAOTest {
 
@@ -30,7 +28,7 @@ public class MySQLClientDAOTest {
 	@Test
 	public void testCreateWork() {
 		System.out.println("\nCreation fonctionne :");
-		Client ctest1 = new Client("aul", "gau", 0, "35", "rue de la creation", "57535", "paradis", "jesaispas");
+		Client ctest1 = new Client("Aulner", "Gautier", 0, "35", "rue de la creation", "57535", "Marange", "France");
 
 		assertTrue(doas.getClientDAO().create(ctest1));
 		doas.getClientDAO().delete(ctest1);
@@ -43,7 +41,7 @@ public class MySQLClientDAOTest {
 		
 		System.out.println("\nSuppression fonctionne :");
 		
-		Client ctest1 = new Client("aul", "gau", 0, "35", "rue de la creation", "57535", "paradis", "jesaispas");
+		Client ctest1 = new Client("Aulner", "Gautier", 0, "35", "rue de la creation", "57535", "Marange", "France");
 		int cle = doas.getClientDAO().createGetKey(ctest1);
 
 		ctest1.setId_client(cle);
@@ -55,9 +53,9 @@ public class MySQLClientDAOTest {
 	@Test
 	public void testDeleteNotWorkNoId() {
 		
-		System.out.println("\nSuppression fonctionne pas id:");
+		System.out.println("\nSuppression fonctionne : pas id:");
 		
-		Client ctest1 = new Client("aul", "gau", -1, "35", "rue de la destrucution", "57535", "enfer", "jesaispas");
+		Client ctest1 = new Client("Aulner", "Gautier", -1, "35", "rue de la destruction", "57535", "Marange", "France");
 
 		assertFalse(doas.getClientDAO().delete(ctest1));
 	}
@@ -69,7 +67,7 @@ public class MySQLClientDAOTest {
 		
 		System.out.println("\nRecherche fonctionne :");
 		
-		Client ctest1 = new Client("aul", "gau", -1, "35", "rue de la recherche", "75000", "enfer", "jesaispas");
+		Client ctest1 = new Client("Aulner", "Gautier", -1, "35", "rue de la recherche", "57535", "Marange", "France");
 		doas.getClientDAO().create(ctest1);
 		int id = ctest1.getId_client();
 		
@@ -82,7 +80,7 @@ public class MySQLClientDAOTest {
 	@Test
 	public void testGetNotWorkNoId() {
 		
-		System.out.println("\nRecherche fonctionne pas id:");
+		System.out.println("\nRecherche fonctionne : pas id:");
 		
 		int id = -1;
 		Client ctest1 = doas.getClientDAO().getById(id);
@@ -121,9 +119,9 @@ public class MySQLClientDAOTest {
 	@Test
 	public void testUpdateNotWorkDup() {
 		
-		System.out.println("\nModification fonctionne pas dup :");
+		System.out.println("\nModification fonctionne :  pas de duplication :");
 		
-		Client ctest1 = new Client("auln", "gaut", 7, "77", "rue de la modification", "78951", "Porto", "Portugal");
+		Client ctest1 = new Client("Aulner", "Gautier", 0, "7", "rue de la modification", "57535", "Marange", "France");
 		int cle = doas.getClientDAO().createGetKey(ctest1);
 		Client ctest2 = doas.getClientDAO().getById(cle);
 		
@@ -150,7 +148,7 @@ public class MySQLClientDAOTest {
 		
 		if(nomtest1.equals(nomtest2) || prenomtest1.equals(prenomtest2) || notest1.equals(notest2) || ruetest1.equals(ruetest2) || codetest1.equals(codetest2) || 
 				paystest1.equals(paystest2) || villetest1.equals(villetest2) ) {
-			System.out.println("Le nom est le meme le test foctionne");
+			System.out.println("Le nom est le meme : le test foctionne");
 			doas.getClientDAO().delete(ctest1);
 			fail("Le nom est le meme");
 		}

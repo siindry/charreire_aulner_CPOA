@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 import dao.IClientDAO;
 import metier.Client;
-import metier.Client;
 
 
 public class ListeMemoireClientDAO implements IClientDAO {

@@ -5,16 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
+
 import java.util.ArrayList;
-import java.util.Date;
+
 
 import dao.IAbonnementDAO;
 import dao.connexion.Connexion;
 import metier.Abonnement;
-import metier.Client;
+
 
 public class MySQLAbonnementDAO implements IAbonnementDAO {
 	

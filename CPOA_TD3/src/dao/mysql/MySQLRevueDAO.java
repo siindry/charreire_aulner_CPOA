@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import dao.IRevueDAO;
 import dao.connexion.Connexion;
-import metier.Periodicite;
+
 import metier.Revue;
 
 public class MySQLRevueDAO implements IRevueDAO{

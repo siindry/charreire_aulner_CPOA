@@ -185,11 +185,13 @@ public class Client {
 		} catch (SQLException sqle) {
 			System.out.println("Pas connect�" + sqle.getMessage());
 		}
+		sc.close();
 		
 		System.out.println("Souhaitez-vous supprimer une autre ligne ? : \n1 : oui \n2 : non");
 	    int refaire = sc.nextInt();
 	    if(refaire==1)
 	    	this.suppClient();
+	    sc.close();
 	}
 	
 	

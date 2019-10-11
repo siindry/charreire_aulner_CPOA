@@ -26,6 +26,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		Periodicite ptest1 = new Periodicite(0,"Trimestriel");
 
 		assertTrue(doas.getPeriodiciteDAO().create(ptest1));
+		doas.getPeriodiciteDAO().delete(ptest1);
 	}
 
 	
@@ -42,7 +43,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		Periodicite ptest2 = new Periodicite("Deletation2");
 		int cle2 = doas.getPeriodiciteDAO().createGetKey(ptest2);
 		
-		//1er entré à supprimer
+		//1er entrée à supprimer
 		ptest1.setId_periode(cle1);
 		Periodicite ptest = doas.getPeriodiciteDAO().getById(cle1);
 		assertTrue(doas.getPeriodiciteDAO().delete(ptest));
@@ -55,7 +56,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		
 		System.out.println("\nRecherche fonctionne :");
 		
-		Periodicite ptest1 = new Periodicite("dddddd");
+		Periodicite ptest1 = new Periodicite("AnnuelFormat3");
 		doas.getPeriodiciteDAO().create(ptest1);
 		int id = ptest1.getId_periode();
 		
@@ -70,7 +71,7 @@ public class ListeMemoirePeriodiciteDAOTest {
 		
 		System.out.println("\nModification fonctionne :");
 		
-		Periodicite ptest1 = new Periodicite(13,"test3");
+		Periodicite ptest1 = new Periodicite(13,"AnnuelFormat2");
 		int id = doas.getPeriodiciteDAO().createGetKey(ptest1);
 		ptest1.setId_periode(id);
 

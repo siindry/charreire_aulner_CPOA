@@ -69,7 +69,8 @@ public class Periodicite {
 			break;
 		default: System.out.println("Entr�e inconnue");
 		
-		}	
+		}
+		sc.close();
 	}
 	
 	
@@ -118,6 +119,7 @@ public class Periodicite {
 		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
+		sc.close();
 		
 		try {
 			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where libelle=?");
@@ -153,6 +155,7 @@ public class Periodicite {
 		
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
+		sc.close();
 		
 		try {
 			PreparedStatement requete = laConnexion.prepareStatement("select id_periodicite,libelle from Periodicite where libelle=?");
@@ -198,6 +201,7 @@ public class Periodicite {
 			
 			Connexion connection = new Connexion();
 			Connection laConnexion = connection.creeConnexion();
+			sc.close();
 			
 			try {
 				PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where libelle=?");

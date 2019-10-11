@@ -43,6 +43,7 @@ public class ChoixDAO {
 			default: System.out.println("Entrée inconnue");
 		
 		}
+		sc.close();
 		
 	}
 	
@@ -161,6 +162,7 @@ public class ChoixDAO {
 		
 		
 		}	
+		sc25.close();
 	}
 	
 	
@@ -282,7 +284,9 @@ public class ChoixDAO {
 		
 		default: System.out.println("Entrée inconnue");
 		
-		}	
+		}
+		
+		sc.close();
 	}
 	
 	
@@ -412,6 +416,8 @@ public class ChoixDAO {
 		default: System.out.println("Entrée inconnue");
 		
 		}	
+		
+		sc.close();
 	}
 	
 	
@@ -546,6 +552,7 @@ public class ChoixDAO {
 		default: System.out.println("Entrée inconnue");
 		
 		}	
+		sc.close();
 
 	}
 		

@@ -49,7 +49,7 @@ public class MySQLPeriodiciteDAOTest {
 	@Test
 	public void testDeleteNotWorkNoId() {
 		
-		System.out.println("\nSuppression fonctionne pas id:");
+		System.out.println("\nSuppression fonctionne : pas id:");
 		
 		Periodicite ptest1 = new Periodicite(-1, "Deletation");
 
@@ -63,7 +63,7 @@ public class MySQLPeriodiciteDAOTest {
 		
 		System.out.println("\nRecherche fonctionne :");
 		
-		Periodicite ptest1 = new Periodicite("dddddd");
+		Periodicite ptest1 = new Periodicite("TrimestrielFormat2");
 		doas.getPeriodiciteDAO().create(ptest1);
 		int id = ptest1.getId_periode();
 		
@@ -75,7 +75,7 @@ public class MySQLPeriodiciteDAOTest {
 	@Test
 	public void testGetNotWorkNoId() {
 		
-		System.out.println("\nRecherche fonctionne pas id:");
+		System.out.println("\nRecherche fonctionne : pas id:");
 		
 		int id = -1;
 		Periodicite ptest1 = doas.getPeriodiciteDAO().getById(id);
@@ -106,7 +106,7 @@ public class MySQLPeriodiciteDAOTest {
 		
 		System.out.println("\nModification fonctionne pas id :");
 		
-		Periodicite ptest1 = new Periodicite(-1,"salutcestcool");
+		Periodicite ptest1 = new Periodicite(-1,"TrimestrielFormat4");
 
 		
 		assertFalse(doas.getPeriodiciteDAO().update(ptest1));
@@ -118,7 +118,7 @@ public class MySQLPeriodiciteDAOTest {
 		
 		System.out.println("\nModification fonctionne pas dup :");
 		
-		Periodicite ptest1 = new Periodicite(0,"salutcestcool");
+		Periodicite ptest1 = new Periodicite(0,"AnnuelFormat2");
 		int cle = doas.getPeriodiciteDAO().createGetKey(ptest1);
 		Periodicite ptest2 = doas.getPeriodiciteDAO().getById(cle);
 		
@@ -126,7 +126,7 @@ public class MySQLPeriodiciteDAOTest {
 		String strtest2 = ptest2.getLibelle();
 		
 		if(strtest1.equals(strtest2)) {
-			System.out.println("Le nom est le meme le test foctionne");
+			System.out.println("Le nom est le meme : le test fonctionne");
 			doas.getPeriodiciteDAO().delete(ptest1);
 			fail("Le nom est le meme");
 		}

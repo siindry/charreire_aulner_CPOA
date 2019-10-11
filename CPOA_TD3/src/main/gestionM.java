@@ -1,4 +1,4 @@
-package metier;
+package main;
 import dao.*;
 
 

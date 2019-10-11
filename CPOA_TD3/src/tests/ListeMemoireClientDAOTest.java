@@ -2,14 +2,11 @@ package tests;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import dao.factory.DAOFactory;
 import enumeration.EPersistance;
-import metier.Abonnement;
 import metier.Client;
 
 public class ListeMemoireClientDAOTest {
@@ -25,9 +22,10 @@ public class ListeMemoireClientDAOTest {
 	
 	@Test
 	public void testCreateWork() {
-		Client ptest1 = new Client("jean","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
+		Client ctest1 = new Client("jean","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
 
-		assertTrue(doas.getClientDAO().create(ptest1));
+		assertTrue(doas.getClientDAO().create(ctest1));
+		doas.getClientDAO().delete(ctest1);
 	}
 
 	
@@ -51,9 +49,9 @@ public class ListeMemoireClientDAOTest {
 		
 		System.out.println("\nRecherche fonctionne :");
 		
-		Client ptest1 = new Client("JEAN","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
-		doas.getClientDAO().create(ptest1);
-		int id = ptest1.getId_client();
+		Client ctest1 = new Client("JEAN","dupont", 0, "3", "rue Saulcy", "57000", "Metz", "France");
+		doas.getClientDAO().create(ctest1);
+		int id = ctest1.getId_client();
 		
 		assertNotNull(doas.getClientDAO().getById(id));
 

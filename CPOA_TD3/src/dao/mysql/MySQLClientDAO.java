@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import dao.IClientDAO;
 import dao.connexion.Connexion;
 import metier.Client;
-import metier.Periodicite;
-import metier.Revue;
+
 
 public class MySQLClientDAO implements IClientDAO{
 	

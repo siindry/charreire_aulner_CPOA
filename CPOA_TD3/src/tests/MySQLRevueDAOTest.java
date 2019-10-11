@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import dao.factory.DAOFactory;
 import enumeration.EPersistance;
-import metier.Client;
 import metier.Revue;
 
 public class MySQLRevueDAOTest {
