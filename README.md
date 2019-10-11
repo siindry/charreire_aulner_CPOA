@@ -1,8 +1,8 @@
 # charreire_aulner_CPOA
 
 Td2 JAVA
-rendu : 04-10-2019
+rendu : 11-10-2019
 
 Pourcentages: 
-AULNER Gautier : 60%
-CHARREIRE Emma : 40%
+AULNER Gautier : 65%
+CHARREIRE Emma : 35%
