@@ -11,28 +11,28 @@ import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 
 public class Main extends Application {
 	
-	@FXML
-	private Button btn_cree;
 	
-	
-	public void affich() {
-		btn_cree.setText("Accepted");
-	}
+
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			
+
 			
-			URL fxmlURL=getClass().getResource("Revue.fxml");
+			URL fxmlURL=getClass().getResource("Revue2.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
+			RevueController controler = fxmlLoader.getController();
+
 			
 			
 			Scene scene = new Scene((VBox) root, 600, 400);
