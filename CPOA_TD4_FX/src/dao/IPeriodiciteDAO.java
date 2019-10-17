@@ -9,4 +9,6 @@ public interface IPeriodiciteDAO extends DAO<Periodicite> {
 	public abstract int createGetKey(Periodicite objet);
 
 	public abstract ArrayList<Periodicite> findAll();
+
+	public abstract Periodicite getByLib(String lib);
 }

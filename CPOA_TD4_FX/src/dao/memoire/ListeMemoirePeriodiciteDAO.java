@@ -122,6 +122,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			return p1;
 			
 		}
+		
 
 		@Override
 		public int createGetKey(Periodicite p1) {
@@ -151,6 +152,29 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			}
 			
 			return (ArrayList<Periodicite>) this.donnees;
+		}
+
+		@Override
+		public Periodicite getByLib(String lib) {
+			Periodicite p1 = new Periodicite(null);
+			boolean exist= false;
+			int compt = 0;
+			
+			while(exist==false && compt < this.donnees.size()) {
+				if(this.donnees.get(compt).getLibelle() == lib) {
+					p1 = this.donnees.get(compt);
+					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+					exist = true;
+				}
+				else
+					compt++;
+			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Aucune ligne trouvé avec cet id.");
+			}
+			
+			return p1;
 		}
 		
 		

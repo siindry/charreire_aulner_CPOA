@@ -126,8 +126,8 @@ public class ListeMemoireRevueDAO implements IRevueDAO{
 			
 			while(exist==false && compt < this.donnees.size()) {
 				r1 = this.donnees.get(compt);
-				System.out.println("\n" + "Id" + r1.getId_revue() + "\n"  + "Titre" + r1.getTitre() + "\n" + "Descritpion"  + r1.getDescription() +
-						"\n" + "Tarif" + r1.getTarif() + "\n" + "Visuel" + r1.getVisuel() + "\n" + "Id periodicite" + r1.getId_periode() + "\n");
+				System.out.println("\n" + "Id : " + r1.getId_revue() + "\n"  + "Titre : " + r1.getTitre() + "\n" + "Descritpion : "  + r1.getDescription() +
+						"\n" + "Tarif : " + r1.getTarif() + "\n" + "Visuel : " + r1.getVisuel() + "\n" + "Id periodicite : " + r1.getId_periode() + "\n");
 				compt++;
 
 			}
