@@ -8,4 +8,6 @@ AULNER Gautier : 50%
 CHARREIRE Emma : 50%
 groupe 2.1
 
-la branche master2 est à ignorer, merci.
+Pour faire la distinction entre les 2 Main (console et interface graphique) :
+Le main pour l'interface (TD4) se trouve dans application.
+Merci
