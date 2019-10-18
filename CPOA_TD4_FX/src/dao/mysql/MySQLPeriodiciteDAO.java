@@ -30,6 +30,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 	
 	
 	
+	
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
