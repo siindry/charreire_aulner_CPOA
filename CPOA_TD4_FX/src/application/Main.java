@@ -26,8 +26,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-
-			
 			URL fxmlURL=getClass().getResource("Revue2.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();

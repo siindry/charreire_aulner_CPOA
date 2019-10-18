@@ -50,6 +50,11 @@ public class Abonnement{
 	public void setDateFin(LocalDate dateFin) {
 		this.dateFin = dateFin;
 	}
+
+	@Override
+	public String toString() {
+		return dateDeb + ", " + dateFin;
+	}
 	
 	
 

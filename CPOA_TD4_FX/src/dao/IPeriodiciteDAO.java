@@ -8,6 +8,7 @@ public interface IPeriodiciteDAO extends DAO<Periodicite> {
 	//pour ajouter des spécificités à une table
 	public abstract int createGetKey(Periodicite objet);
 
+	public abstract ArrayList<String> findAllStr();
 	public abstract ArrayList<Periodicite> findAll();
 
 	public abstract Periodicite getByLib(String lib);

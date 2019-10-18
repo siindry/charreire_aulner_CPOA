@@ -72,6 +72,15 @@ public class Revue {
 			this.id_periode = id_periode;
 		}
 
+		@Override
+		public String toString() {
+			if(visuel=="aucun")
+				return titre + ", " + description +" (" + tarif + ") ";
+			else
+				return titre + ", " + description +" (" + tarif + ") " +  ", " + visuel;
+		}
+		
+		
 		
 		
 }

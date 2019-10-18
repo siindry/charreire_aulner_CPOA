@@ -27,7 +27,14 @@ public class MySQLRevueDAO implements IRevueDAO{
 		return dao;
 	}
 	
-	public Revue getById(int id) {
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	public Revue getById(int id) throws SQLException {
 		
 		Revue r1 = new Revue(id, null, null, 0, null, 0);
 		Connexion connection = new Connexion();
@@ -66,6 +73,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 			}	
 		} catch (SQLException sqle) {
 			System.out.println("Erreur : " + sqle.getMessage());
+			throw sqle;
 		}
 		
 		return r1;
@@ -79,7 +87,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 
 
 
-	public boolean create(Revue r1) {
+	public boolean create(Revue r1) throws SQLException {
 		int i = 0;
 		
 		
@@ -106,6 +114,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 			}	
 		} catch (SQLException sqle) {
 			System.out.println("Erreur : " + sqle.getMessage());
+			throw sqle;
 		}
 		
 	    
@@ -116,7 +125,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 	    }
 	}
 
-	public boolean update(Revue r1) {
+	public boolean update(Revue r1) throws SQLException {
 		int i = 0;
 		
 		Connexion connection = new Connexion();
@@ -143,6 +152,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 		
 		} catch (SQLException sqle) {
 			System.out.println("Erreur : " + sqle.getMessage());
+			throw sqle;
 		}
 		
 		if(i==0)

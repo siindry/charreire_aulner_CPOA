@@ -35,16 +35,14 @@ public class RevueController implements Initializable{
 
 	@FXML
 	private ChoiceBox<String> combo_periodicite;
-
 	
-	DAOFactory dao = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
+	DAOFactory dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 	
 	String daoT = null;
 	
 
 	@FXML
     private void button() { 
-		
 		
 		String titre = txt_titre.getText();
 		String desc = txt_desc.getText();
@@ -56,30 +54,16 @@ public class RevueController implements Initializable{
 		int noPeriod = p1.getId_periode();
 		
         String str = titre + " " + desc + " (" + tarif + " euros)";
-        lbl_res.setText(str);
+       
         Revue r1 = new Revue(0, titre, desc, tarifDoub, "aucun", noPeriod);
+        lbl_res.setText(r1.toString());
         dao.getRevueDAO().create(r1);
         
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void Changement() {
 		
-		ArrayList<String> rPer = new ArrayList<String>();
-		ArrayList<Periodicite> arrP1 = dao.getPeriodiciteDAO().findAll();
-		
-		Periodicite p1 = null;
-		String period = null;
-		
-
-		for(int i=0; i<arrP1.size(); i++) {
-			p1 = arrP1.get(i);
-			period = p1.getLibelle();
-				
-			rPer.add(period);
-		}
-
-		
+		ArrayList<String> rPer = dao.getPeriodiciteDAO().findAllStr();	
 		
 	    this.combo_periodicite.setItems(FXCollections.observableArrayList(rPer));
 	    lbl_type.setText("Vous etes actuellement en Liste Memoire : ");
@@ -95,6 +79,8 @@ public class RevueController implements Initializable{
 	@FXML 
     private void goSQL() { 
 		dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+		this.combo_periodicite.setItems(FXCollections.observableArrayList());
+		Changement();
 		lbl_type.setText("Vous etes actuellement en SQL : ");
 		daoT = "sql";
 	}
@@ -102,8 +88,18 @@ public class RevueController implements Initializable{
 	@FXML 
     private void goMemoire() { 
 		dao = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
+		this.combo_periodicite.setItems(FXCollections.observableArrayList());
+		Changement();
 		lbl_type.setText("Vous etes actuellement en Liste Memoire : ");
 			daoT = "liste";
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+		lbl_type.setText("Vous etes actuellement en SQL : ");
+		Changement();
+		
 	}
 
 
