@@ -137,10 +137,9 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 		public ArrayList<Periodicite> findAll() {
 			
 			Periodicite p1 = new Periodicite(1, null);
-			boolean exist= false;
 			int compt = 0;
 			
-			while(exist==false && compt < this.donnees.size()) {
+			while(compt < this.donnees.size()) {
 				p1 = this.donnees.get(compt);
 				System.out.println("\n" + "Id : " + p1.getId_periode() + "\n Libelle : " + p1.getLibelle() + "\n");
 				compt++;
@@ -175,6 +174,28 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			}
 			
 			return p1;
+		}
+
+		@Override
+		public ArrayList<String> findAllStr() {
+			
+			ArrayList<String> arrP = new ArrayList<String>();
+			Periodicite p1 = new Periodicite(1, null);
+			int compt = 0;
+			
+			while(compt < this.donnees.size()) {
+				p1 = this.donnees.get(compt);
+				System.out.println("\n" + "Id : " + p1.getId_periode() + "\n Libelle : " + p1.getLibelle() + "\n");
+				compt++;
+				arrP.add(p1.getLibelle());
+
+			}
+			
+			if(compt >= this.donnees.size()) {
+				System.out.println("Fin de la ligne.");
+			}
+			
+			return arrP;
 		}
 		
 		

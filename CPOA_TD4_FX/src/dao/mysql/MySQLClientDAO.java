@@ -230,7 +230,7 @@ public class MySQLClientDAO implements IClientDAO{
 
 	public boolean equals(Client obj) {
 		// TODO Auto-generated method stub
-		return super.equals(obj);
+		return this.equals(obj);
 	}
 
 	@Override

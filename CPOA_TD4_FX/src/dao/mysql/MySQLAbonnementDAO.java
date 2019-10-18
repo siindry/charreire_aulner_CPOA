@@ -31,6 +31,15 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	}
 	
 	
+	
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
 	public Abonnement getBy2Id(int id1, int id2) {
 		
 		Abonnement a1 = new Abonnement(id1, id2, null, null);
