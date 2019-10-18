@@ -1,11 +1,11 @@
 # charreire_aulner_CPOA
 
-Td2 JAVA
+Td4 JAVAFX
 rendu : 18-10-2019
 
 Pourcentages: 
-AULNER Gautier : 
-CHARREIRE Emma : 
+AULNER Gautier : 50%
+CHARREIRE Emma : 50%
 groupe 2.1
 
 la branche master2 est à ignorer, merci.
