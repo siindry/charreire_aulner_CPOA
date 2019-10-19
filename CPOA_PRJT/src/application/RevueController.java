@@ -46,7 +46,7 @@ public class RevueController implements Initializable{
 	
 
 	@FXML
-    private void button() throws SQLException { 
+	public void button() throws SQLException { 
 		
 		String titre = txt_titre.getText();
 		String desc = txt_desc.getText();
@@ -75,13 +75,13 @@ public class RevueController implements Initializable{
 	}
 	
 	@FXML 
-    private void affiche() { 
+	public void affiche() { 
 		dao.getRevueDAO().findAll();
 			
 	}
 	
 	@FXML 
-    private void goSQL() { 
+    public void goSQL() { 
 		dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
 		this.combo_periodicite.setItems(FXCollections.observableArrayList());
 		Changement();
@@ -90,7 +90,7 @@ public class RevueController implements Initializable{
 	}
 	
 	@FXML 
-    private void goMemoire() { 
+	public void goMemoire() { 
 		dao = DAOFactory.getDAOFactory(EPersistance.LISTE_MEMOIRE);
 		this.combo_periodicite.setItems(FXCollections.observableArrayList());
 		Changement();

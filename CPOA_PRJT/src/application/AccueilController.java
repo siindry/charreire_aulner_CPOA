@@ -20,9 +20,28 @@ public class AccueilController extends Stage{
 
 	
 	@FXML
-    private void affPeriodicite(){
+	public void affPeriodicite(){
 		
-		iTable = 1;
+		try {
+			
+			
+			final URL fxmlURL = getClass().getResource("VueTablePeriodicite.fxml");
+			final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+			final VBox node = (VBox)fxmlLoader.load();
+			Scene scene = new Scene(node);
+			this.initModality(Modality.APPLICATION_MODAL);
+			
+			RevueController controleur = fxmlLoader.getController();
+			fxmlLoader.setController(controleur);
+			
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			secondStage.setScene(scene);
+			secondStage.setTitle("Ajout Periodicite");
+			secondStage.show();
+
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 
 
 
@@ -30,28 +49,28 @@ public class AccueilController extends Stage{
 	}
 	
 	@FXML
-    private void affRevue(){
+	public void affRevue(){
 		
 		iTable = 2;
 		
 	}
 	
 	@FXML
-    private void affClient(){
+	public void affClient(){
 		
 		iTable = 3;
 		
 	}
 	
 	@FXML
-    private void affAbo(){
+	public void affAbo(){
 		
 		iTable = 4;
 		
 	}
 	
 	@FXML
-    private void openAjout(){
+	public void openAjout(){
 		
 		switch(iTable){
 			
@@ -59,7 +78,7 @@ public class AccueilController extends Stage{
 			try {
 			
 				
-				final URL fxmlURL = getClass().getResource("Periodicite.fxml");
+				final URL fxmlURL = getClass().getResource("VueTablePeriodicite.fxml");
 				final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 				final VBox node = (VBox)fxmlLoader.load();
 				Scene scene = new Scene(node);
