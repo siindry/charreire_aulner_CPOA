@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="726.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AccueilController">
    <children>
-      <FlowPane alignment="CENTER" prefHeight="53.0" prefWidth="600.0">
+      <FlowPane alignment="CENTER" prefHeight="92.0" prefWidth="726.0" style="-fx-background-color: #3628;">
          <children>
-            <Button minWidth="95.0" mnemonicParsing="false" text="SQL" />
-            <Button minWidth="95.0" mnemonicParsing="false" text="Liste Mémoire" />
+            <Label text="RevueOnLine" textFill="WHITE">
+               <font>
+                  <Font name="Courier New" size="39.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="TOP_CENTER" prefHeight="73.0" prefWidth="726.0">
+         <children>
+            <Label text="Bienvenue sur l'application de gestion des abonnements&#10;pour des revues, magazines et journaux" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="726.0">
+         <children>
+            <Label text="Veuillez sélectionner un type d'encodage :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="50.0" prefWidth="726.0">
+         <children>
+            <Button fx:id="btn_sql" minWidth="95.0" mnemonicParsing="false" onAction="#goSQL" text="SQL">
+               <FlowPane.margin>
+                  <Insets right="15.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="btn_liste" minWidth="95.0" mnemonicParsing="false" onAction="#goListeMemoire" text="Liste Mémoire" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="BOTTOM_CENTER" prefHeight="31.0" prefWidth="726.0">
+         <children>
+            <Label text="Veuillez sélectionner une table :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </FlowPane>
       <FlowPane alignment="CENTER" prefHeight="56.0" prefWidth="600.0">
          <children>
-            <Button minWidth="90.0" mnemonicParsing="false" text="Périodicité" />
-            <Button minWidth="90.0" mnemonicParsing="false" text="Revue" />
-            <Button minWidth="90.0" mnemonicParsing="false" text="Client" />
-            <Button minWidth="90.0" mnemonicParsing="false" text="Abonnement" />
-         </children>
-      </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="58.0" prefWidth="600.0">
-         <children>
-            <TextField />
-         </children>
-      </FlowPane>
-      <TableView prefHeight="237.0" prefWidth="600.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <FlowPane alignment="CENTER" minWidth="80.0" prefHeight="50.0" prefWidth="600.0">
-         <children>
-            <Button minWidth="80.0" mnemonicParsing="false" text="Modifier" />
-            <Button minWidth="80.0" mnemonicParsing="false" text="Supprimer" />
-            <Button minWidth="80.0" mnemonicParsing="false" text="Ajouter" />
+            <Button fx:id="btn_periodicite" minWidth="90.0" mnemonicParsing="false" onAction="#affPeriodicite" text="Périodicité">
+               <FlowPane.margin>
+                  <Insets right="15.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="btn_revue" minWidth="90.0" mnemonicParsing="false" onAction="#affRevue" text="Revue">
+               <FlowPane.margin>
+                  <Insets right="15.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="btn_client" minWidth="90.0" mnemonicParsing="false" onAction="#affClient" text="Client">
+               <FlowPane.margin>
+                  <Insets right="15.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button fx:id="btn_abo" minWidth="90.0" mnemonicParsing="false" onAction="#affAbo" text="Abonnement" />
          </children>
       </FlowPane>
    </children>

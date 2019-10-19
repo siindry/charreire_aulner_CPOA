@@ -29,7 +29,6 @@ public class Main extends Application {
 			URL fxmlURL=getClass().getResource("Accueil.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 			Node root = fxmlLoader.load();
-			RevueController controler = fxmlLoader.getController();
 
 			
 			

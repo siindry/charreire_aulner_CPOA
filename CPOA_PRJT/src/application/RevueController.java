@@ -14,10 +14,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import metier.Periodicite;
 import metier.Revue;
 
 public class RevueController implements Initializable{
+	
+	private Stage stage = null;
 	
 	@FXML
 	private Label lbl_res;
@@ -97,10 +100,12 @@ public class RevueController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
-		lbl_type.setText("Vous etes actuellement en SQL : ");
-		Changement();
+
 		
+	}
+	
+	public void setStage(Stage stage) {
+	    this.stage = stage;
 	}
 
 
