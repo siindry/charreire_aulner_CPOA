@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import java.lang.*?>  
+<?import java.util.*?>  
+<?import javafx.scene.*?>  
+<?import javafx.scene.control.*?>  
+<?import javafx.scene.layout.*?>  
+
+<VBox fx:id="root" alignment="CENTER" prefHeight="363.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RevueController">
+            <FlowPane id="creer" alignment="CENTER" prefHeight="51.0" prefWidth="600.0">
+                  <Button fx:id="btn_cree" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-alignment: center;" text="Créer" onAction="#onButtonActivated"/>
+                  </Button>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="46.0" prefWidth="575.0">
+			<Label alignment="TOP_CENTER" contentDisplay="TOP" text="Label" />
+            </FlowPane>
+</VBox>
