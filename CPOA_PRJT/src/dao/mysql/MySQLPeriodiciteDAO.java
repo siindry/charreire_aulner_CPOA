@@ -87,7 +87,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 			PreparedStatement req = laConnexion.prepareStatement("update Periodicite set libelle=? where id_periodicite=?", Statement.RETURN_GENERATED_KEYS);
 				
 			req.setString(1, p1.getLibelle());
-			req.setInt(2, p1.getId_periode());
+			req.setInt(2, p1.getId_periodicite());
 
 			i = req.executeUpdate();
 			System.out.println("ligne touch� : " + i);
@@ -124,7 +124,7 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		try {
 			PreparedStatement req = laConnexion.prepareStatement("delete from Periodicite where id_periodicite=?");
 				
-			req.setInt(1, p1.getId_periode()); // 1 correspond au 1er para du where
+			req.setInt(1, p1.getId_periodicite()); // 1 correspond au 1er para du where
 			
 			i = req.executeUpdate();
 			System.out.println("ligne touch� : " + i);
@@ -167,8 +167,8 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		    	p1 = new Periodicite(0, null);
 		    	System.out.println("Ligne trouvé : \n"); 
 		    	
-		         p1.setId_periode(res.getInt("id_periodicite"));
-		         System.out.println("id : " + p1.getId_periode());
+		         p1.setId_periodicite(res.getInt("id_periodicite"));
+		         System.out.println("id : " + p1.getId_periodicite());
 		         
 		         p1.setLibelle(res.getString("libelle"));
 		         System.out.println("libelle : " + p1.getLibelle() + "\n");
@@ -240,8 +240,8 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 	
 		    while(res.next()) {
 		    	
-		    	c1.setId_periode(res.getInt("id_periodicite"));
-			    System.out.println("id : " + c1.getId_periode() );
+		    	c1.setId_periodicite(res.getInt("id_periodicite"));
+			    System.out.println("id : " + c1.getId_periodicite() );
 			    
 			    c1.setLibelle(res.getString("libelle"));
 			    System.out.println("nom : " + c1.getLibelle() + "\n");
@@ -262,8 +262,35 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 
 	@Override
 	public ArrayList<Periodicite> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Periodicite> listec = new ArrayList<Periodicite>();
+		Periodicite p1 = new Periodicite(0, null);
+		Connexion connection = new Connexion();
+		Connection laConnexion = connection.creeConnexion();
+		
+		try {
+			PreparedStatement requete = laConnexion.prepareStatement("select * from Periodicite");
+					ResultSet res = requete.executeQuery();
+	
+		    while(res.next()) {
+		    	
+		    	p1.setId_periodicite(res.getInt("id_periodicite"));
+			    System.out.println("id : " + p1.getId_periodicite() );
+			    
+			    p1.setLibelle(res.getString("libelle"));
+			    System.out.println("nom : " + p1.getLibelle() + "\n");
+			    
+			    listec.add(new Periodicite(p1.getId_periodicite(), p1.getLibelle()));
+		    }
+			
+			if (laConnexion != null) {
+				System.out.println("Fermeture de la connexion r�ussie! ");
+				laConnexion.close();
+			}	
+		} catch (SQLException sqle) {
+			System.out.println("Erreur : " + sqle.getMessage());
+		}
+		
+		return listec;
 	}
 
 	@Override
@@ -284,8 +311,8 @@ public class MySQLPeriodiciteDAO implements IPeriodiciteDAO{
 		    	p1 = new Periodicite(0, null);
 		    	System.out.println("Ligne trouvé : \n"); 
 		    	
-		         p1.setId_periode(res.getInt("id_periodicite"));
-		         System.out.println("id : " + p1.getId_periode());
+		         p1.setId_periodicite(res.getInt("id_periodicite"));
+		         System.out.println("id : " + p1.getId_periodicite());
 		         
 		         p1.setLibelle(res.getString("libelle"));
 		         System.out.println("libelle : " + p1.getLibelle() + "\n");

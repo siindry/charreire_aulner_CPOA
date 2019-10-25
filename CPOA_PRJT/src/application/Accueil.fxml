@@ -27,11 +27,16 @@
             </Label>
          </children>
       </FlowPane>
-      <FlowPane alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="726.0">
+      <FlowPane alignment="BOTTOM_CENTER" prefHeight="36.0" prefWidth="726.0" rowValignment="BOTTOM">
          <children>
-            <Label text="Veuillez sélectionner un type d'encodage :">
+            <Label text="Veuillez sélectionner un type d'encodage : ">
                <font>
                   <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbl_type" text="Vous êtes actuellement en SQL">
+               <font>
+                  <Font size="15.0" />
                </font>
             </Label>
          </children>

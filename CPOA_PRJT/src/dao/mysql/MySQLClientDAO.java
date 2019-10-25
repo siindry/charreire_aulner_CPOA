@@ -30,7 +30,7 @@ public class MySQLClientDAO implements IClientDAO{
 	
 	public Client getById(int id) {
 		
-		Client c1 = new Client(null, null, id, null, null, null, null, null);
+		Client c1 = new Client(0, null, null, null, null, null, null, null);
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
@@ -56,8 +56,8 @@ public class MySQLClientDAO implements IClientDAO{
 			    c1.setVoie(res.getString("voie"));
 			    System.out.println("voie : " + c1.getVoie() );
 			    
-			    c1.setCode_p(res.getString("code_postal"));
-			    System.out.println("code_postal : " + c1.getCode_p() );
+			    c1.setCode_postal(res.getString("code_postal"));
+			    System.out.println("code_postal : " + c1.getCode_postal() );
 			    
 			    c1.setVille(res.getString("ville"));
 			    System.out.println("ville : " + c1.getVille() );
@@ -96,7 +96,7 @@ public class MySQLClientDAO implements IClientDAO{
 			req.setString(2, c1.getPrenom());
 			req.setString(3, c1.getNo_rue());
 			req.setString(4, c1.getVoie());
-			req.setString(5, c1.getCode_p());
+			req.setString(5, c1.getCode_postal());
 			req.setString(6, c1.getVille());
 			req.setString(7, c1.getPays());
 				
@@ -133,7 +133,7 @@ public class MySQLClientDAO implements IClientDAO{
 			req.setString(2, c1.getPrenom());
 			req.setString(3, c1.getNo_rue());
 			req.setString(4, c1.getVoie());
-			req.setString(5, c1.getCode_p());
+			req.setString(5, c1.getCode_postal());
 			req.setString(6, c1.getVille());
 			req.setString(7, c1.getPays());
 			
@@ -204,7 +204,7 @@ public class MySQLClientDAO implements IClientDAO{
 			req.setString(2, c1.getPrenom());
 			req.setString(3, c1.getNo_rue());
 			req.setString(4, c1.getVoie());
-			req.setString(5, c1.getCode_p());
+			req.setString(5, c1.getCode_postal());
 			req.setString(6, c1.getVille());
 			req.setString(7, c1.getPays());
 			
@@ -237,7 +237,7 @@ public class MySQLClientDAO implements IClientDAO{
 	public ArrayList<Client> findAll() {
 		
 		ArrayList<Client> listec = new ArrayList<Client>();
-		Client c1 = new Client(null, null, 0, null, null, null, null, null);
+		Client c1 = new Client(0, null, null, null, null, null, null, null);
 		listec.add(c1);
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
@@ -263,8 +263,8 @@ public class MySQLClientDAO implements IClientDAO{
 			    c1.setVoie(res.getString("voie"));
 			    System.out.println("voie : " + c1.getVoie() );
 			    
-			    c1.setCode_p(res.getString("code_postal"));
-			    System.out.println("code_postal : " + c1.getCode_p() );
+			    c1.setCode_postal(res.getString("code_postal"));
+			    System.out.println("code_postal : " + c1.getCode_postal() );
 			    
 			    c1.setVille(res.getString("ville"));
 			    System.out.println("ville : " + c1.getVille() );
@@ -272,7 +272,7 @@ public class MySQLClientDAO implements IClientDAO{
 			    c1.setPays(res.getString("pays"));
 			    System.out.println("pays : " + c1.getPays() + "\n");
 			    
-			    listec.add(c1);
+			    listec.add(new Client(c1.getId_client(), c1.getNom(), c1.getPrenom(), c1.getNo_rue(), c1.getVoie(), c1.getCode_postal(), c1.getVille(), c1.getPays()));
 		    }
 			
 			if (laConnexion != null) {

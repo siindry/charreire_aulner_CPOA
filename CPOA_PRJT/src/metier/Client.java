@@ -15,14 +15,14 @@ public class Client {
 	private int id_client;
 	private String no_rue;
 	private String voie;
-	private String code_p;
+	private String code_postal;
 	private String ville;
 	private String pays;
 	
 	
 	
 	
-	public Client(String nom, String prenom, int id_client, String no_rue, String voie, String code_p, String ville,
+	public Client(int id_client, String nom, String prenom, String no_rue, String voie, String code_p, String ville,
 			String pays) {
 		super();
 		this.nom = nom;
@@ -30,7 +30,7 @@ public class Client {
 		this.id_client = id_client;
 		this.no_rue = no_rue;
 		this.voie = voie;
-		this.code_p = code_p;
+		this.code_postal = code_p;
 		this.ville = ville;
 		this.pays = pays;
 	}
@@ -76,12 +76,12 @@ public class Client {
 		this.voie = voie;
 	}
 
-	public String getCode_p() {
-		return code_p;
+	public String getCode_postal() {
+		return code_postal;
 	}
 
-	public void setCode_p(String code_p) {
-		this.code_p = code_p;
+	public void setCode_postal(String code_p) {
+		this.code_postal = code_p;
 	}
 
 	public String getVille() {
@@ -104,7 +104,7 @@ public class Client {
 
 	public String toString() {
 		return  nom + ", " + prenom + ", " + no_rue + ", " + voie + ", "
-				+ code_p + ", " + ville + ", " + pays;
+				+ code_postal + ", " + ville + ", " + pays;
 	}
 
 	

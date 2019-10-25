@@ -5,56 +5,62 @@ import java.time.LocalDate;
 
 public class Abonnement{
 	
-	private int idCl;
-	private int idRev;
-	private LocalDate dateDeb;
-	private LocalDate dateFin;
+	private int id_client;
+	private int id_revue;
+	private LocalDate date_debut;
+	private LocalDate date_fin;
 	
 	
-	public Abonnement(int idCl, int idRev, LocalDate dateDeb, LocalDate dateFin) {
+	public Abonnement(int id_client, int id_revue, LocalDate date_debut, LocalDate date_fin) {
 		super();
-		this.idCl = idCl;
-		this.idRev = idRev;
-		this.dateDeb = dateDeb;
-		this.dateFin = dateFin;
+		this.id_client = id_client;
+		this.id_revue = id_revue;
+		this.date_debut = date_debut;
+		this.date_fin = date_fin;
+	}
+
+
+	public int getId_client() {
+		return id_client;
+	}
+
+
+	public void setId_client(int id_client) {
+		this.id_client = id_client;
+	}
+
+
+	public int getId_revue() {
+		return id_revue;
+	}
+
+
+	public void setId_revue(int id_revue) {
+		this.id_revue = id_revue;
+	}
+
+
+	public LocalDate getDate_debut() {
+		return date_debut;
+	}
+
+
+	public void setDate_debut(LocalDate date_debut) {
+		this.date_debut = date_debut;
+	}
+
+
+	public LocalDate getDate_fin() {
+		return date_fin;
+	}
+
+
+	public void setDate_fin(LocalDate date_fin) {
+		this.date_fin = date_fin;
 	}
 	
-	public int getIdCl() {
-		return idCl;
-	}
-
-	public void setIdCl(int idCl) {
-		this.idCl = idCl;
-	}
-
-	public int getIdRev() {
-		return idRev;
-	}
-
-	public void setIdRev(int idRev) {
-		this.idRev = idRev;
-	}
-
-	public LocalDate getDateDeb() {
-		return dateDeb;
-	}
-
-	public void setDateDeb(LocalDate dateDeb) {
-		this.dateDeb = dateDeb;
-	}
-
-	public LocalDate getDateFin() {
-		return dateFin;
-	}
-
-	public void setDateFin(LocalDate dateFin) {
-		this.dateFin = dateFin;
-	}
-
-	@Override
-	public String toString() {
-		return dateDeb + ", " + dateFin;
-	}
+	
+	
 	
 	
 

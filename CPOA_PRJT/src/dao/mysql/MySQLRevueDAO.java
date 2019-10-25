@@ -268,7 +268,7 @@ public class MySQLRevueDAO implements IRevueDAO{
 			    r1.setId_periode(res.getInt("id_periodicite"));
 			    System.out.println("id_periodicite : " + r1.getId_periode() );
 			    
-			    listec.add(r1);
+			    listec.add(new Revue(r1.getId_revue(), r1.getTitre(), r1.getDescription(), r1.getTarif(), r1.getVisuel(), r1.getId_periode()));
 		    }
 			
 			if (laConnexion != null) {

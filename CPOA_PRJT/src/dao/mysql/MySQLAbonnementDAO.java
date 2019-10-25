@@ -54,19 +54,19 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	
 		    while(res.next()) {
 		    	
-		    	a1.setIdCl(res.getInt("id_client"));
-			    System.out.println("\nid client : " + a1.getIdCl() );
+		    	a1.setId_client(res.getInt("id_client"));
+			    System.out.println("\nid client : " + a1.getId_client() );
 			    
-			    a1.setIdRev(res.getInt("id_revue"));
-			    System.out.println("id revue : " + a1.getIdRev() );
+			    a1.setId_revue(res.getInt("id_revue"));
+			    System.out.println("id revue : " + a1.getId_revue() );
 			    
 			    LocalDate dateD = res.getDate("date_debut").toLocalDate();
-			    a1.setDateDeb(dateD);
-			    System.out.println("date début : " + a1.getDateDeb() );
+			    a1.setDate_debut(dateD);
+			    System.out.println("date début : " + a1.getDate_debut() );
 			    
 			    LocalDate dateF = res.getDate("date_debut").toLocalDate();
-			    a1.setDateFin(dateF);
-			    System.out.println("date fin : " + a1.getDateFin() + "\n");
+			    a1.setDate_fin(dateF);
+			    System.out.println("date fin : " + a1.getDate_fin() + "\n");
 
 		    }
 			if (laConnexion != null) {
@@ -85,8 +85,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
-		LocalDate date1 = a1.getDateDeb();
-		LocalDate date2 = a1.getDateFin();
+		LocalDate date1 = a1.getDate_debut();
+		LocalDate date2 = a1.getDate_fin();
 		
 		java.sql.Date dateS = java.sql.Date.valueOf(date1);
 		java.sql.Date dateU = java.sql.Date.valueOf(date2);
@@ -99,8 +99,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 				PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (id_client,id_revue,date_debut,date_fin) value(?,?,?,?)",
 						 Statement.RETURN_GENERATED_KEYS);
 				
-				req.setInt(1, a1.getIdCl());
-				req.setInt(2, a1.getIdRev());
+				req.setInt(1, a1.getId_client());
+				req.setInt(2, a1.getId_revue());
 				req.setDate(3, dateS);
 				req.setDate(4, dateU);
 				
@@ -128,8 +128,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		Connection laConnexion = connection.creeConnexion();
 		
 		
-		LocalDate date1 = a1.getDateDeb();
-		LocalDate date2 = a1.getDateFin();
+		LocalDate date1 = a1.getDate_debut();
+		LocalDate date2 = a1.getDate_fin();
 		
 		java.sql.Date dateDeb = java.sql.Date.valueOf(date1);
 		java.sql.Date dateFin = java.sql.Date.valueOf(date2);
@@ -139,8 +139,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 			PreparedStatement req = laConnexion.prepareStatement("update Abonnement set date_debut=?,date_fin=? where id_client=? and id_revue=?");
 			req.setDate(1, dateDeb);
 			req.setDate(2, dateFin);
-			req.setInt(3, a1.getIdCl());
-			req.setInt(4, a1.getIdRev());
+			req.setInt(3, a1.getId_client());
+			req.setInt(4, a1.getId_revue());
 
 			
 			
@@ -175,8 +175,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		try {
 			PreparedStatement req = laConnexion.prepareStatement("delete from Abonnement where id_client=? and id_revue=?");
 				
-			req.setInt(1, a1.getIdCl()); // 1 correspond au 1er para du where
-			req.setInt(2, a1.getIdRev());
+			req.setInt(1, a1.getId_client()); // 1 correspond au 1er para du where
+			req.setInt(2, a1.getId_revue());
 
 			i = req.executeUpdate();
 			System.out.println("ligne touchï¿½ : " + i);
@@ -212,21 +212,21 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 	
 		    while(res.next()) {
 		    	
-		    	a1.setIdCl(res.getInt("id_client"));
-			    System.out.println("\nid client : " + a1.getIdCl() );
+		    	a1.setId_client(res.getInt("id_client"));
+			    System.out.println("\nid client : " + a1.getId_client() );
 			    
-			    a1.setIdRev(res.getInt("id_revue"));
-			    System.out.println("id revue : " + a1.getIdRev() );
+			    a1.setId_revue(res.getInt("id_revue"));
+			    System.out.println("id revue : " + a1.getId_revue() );
 			    
 			    LocalDate dateD = res.getDate("date_debut").toLocalDate();
-			    a1.setDateDeb(dateD);
-			    System.out.println("date début : " + a1.getDateDeb() );
+			    a1.setDate_debut(dateD);
+			    System.out.println("date début : " + a1.getDate_debut() );
 			    
 			    LocalDate dateF = res.getDate("date_debut").toLocalDate();
-			    a1.setDateFin(dateF);
-			    System.out.println("date fin : " + a1.getDateFin() + "\n");
+			    a1.setDate_fin(dateF);
+			    System.out.println("date fin : " + a1.getDate_fin() + "\n");
 			    
-			    listea.add(a1);
+			    listea.add(new Abonnement(a1.getId_client(), a1.getId_revue(), a1.getDate_debut(), a1.getDate_fin()));
 
 		    }
 			if (laConnexion != null) {
@@ -254,8 +254,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 		Connexion connection = new Connexion();
 		Connection laConnexion = connection.creeConnexion();
 		
-		LocalDate date1 = a1.getDateDeb();
-		LocalDate date2 = a1.getDateFin();
+		LocalDate date1 = a1.getDate_debut();
+		LocalDate date2 = a1.getDate_fin();
 		
 		java.sql.Date dateS = java.sql.Date.valueOf(date1);
 		java.sql.Date dateU = java.sql.Date.valueOf(date2);
@@ -268,8 +268,8 @@ public class MySQLAbonnementDAO implements IAbonnementDAO {
 				PreparedStatement req = laConnexion.prepareStatement("insert into Abonnement (id_client,id_revue,date_debut,date_fin) value(?,?,?,?)",
 						 Statement.RETURN_GENERATED_KEYS);
 				
-				req.setInt(1, a1.getIdCl());
-				req.setInt(2, a1.getIdRev());
+				req.setInt(1, a1.getId_client());
+				req.setInt(2, a1.getId_revue());
 				req.setDate(3, dateS);
 				req.setDate(4, dateU);
 				

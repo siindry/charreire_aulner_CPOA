@@ -8,13 +8,13 @@ import dao.connexion.Connexion;
 
 public class Periodicite {
 	
-	private int id_periode;
+	private int id_periodicite;
 	private String libelle;
 
 	
 	public Periodicite(int id_periode, String libelle) {
 		super();
-		this.id_periode = id_periode;
+		this.id_periodicite = id_periode;
 		this.libelle = libelle;
 	}
 	
@@ -24,13 +24,13 @@ public class Periodicite {
 	}
 	
 
-	public int getId_periode() {
-		return id_periode;
+	public int getId_periodicite() {
+		return id_periodicite;
 	}
 
 
-	public void setId_periode(int id_periode) {
-		this.id_periode = id_periode;
+	public void setId_periodicite(int id_periode) {
+		this.id_periodicite = id_periode;
 	}
 
 

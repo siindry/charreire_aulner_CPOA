@@ -28,8 +28,8 @@ public class ListeMemoireClientDAO implements IClientDAO {
 
 			this.donnees = new ArrayList<Client>();
 			
-			this.donnees.add(new Client("Jean", "Philipe", 1, "98", "Place de la liberté", "64814", "Rombas", "France"));
-			this.donnees.add(new Client("Marc", "DeHue", 2, "157", "Rue du marché", "75000", "Paris", "France"));
+			this.donnees.add(new Client(1, "Jean", "Philipe", "98", "Place de la liberté", "64814", "Rombas", "France"));
+			this.donnees.add(new Client(2, "Marc", "DeHue", "157", "Rue du marché", "75000", "Paris", "France"));
 		}
 
 
@@ -99,7 +99,7 @@ public class ListeMemoireClientDAO implements IClientDAO {
 		
 		public Client getById(int id) {
 			
-			Client c1 = new Client(null, null, 0, null, null, null, null, null);
+			Client c1 = new Client(0, null, null, null, null, null, null, null);
 			boolean exist= false;
 			int compt = 0;
 			
@@ -130,7 +130,7 @@ public class ListeMemoireClientDAO implements IClientDAO {
 		
 		public ArrayList<Client> findAll() {
 			
-			Client c1 = new Client(null, null, 1, null, null, null, null, null);
+			Client c1 = new Client(0, null, null, null, null, null, null, null);
 			boolean exist= false;
 			int compt = 0;
 			

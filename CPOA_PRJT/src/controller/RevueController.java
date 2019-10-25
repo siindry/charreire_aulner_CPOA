@@ -1,10 +1,11 @@
-package application;
+package controller;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import application.AccueilController;
 import dao.factory.DAOFactory;
 import enumeration.EPersistance;
 import javafx.collections.FXCollections;
@@ -26,9 +27,6 @@ public class RevueController implements Initializable{
 	private Label lbl_res;
 	
 	@FXML
-	private Label lbl_type;
-	
-	@FXML
 	private TextField txt_titre;
 	
 	@FXML
@@ -40,7 +38,7 @@ public class RevueController implements Initializable{
 	@FXML
 	private ChoiceBox<String> combo_periodicite;
 	
-	DAOFactory dao = DAOFactory.getDAOFactory(EPersistance.MYSQL);
+	DAOFactory dao = AccueilController.dao;
 	
 	String daoT = null;
 	
@@ -55,7 +53,7 @@ public class RevueController implements Initializable{
 		Double tarifDoub = Double.parseDouble(tarif);
 		
 		Periodicite p1 = dao.getPeriodiciteDAO().getByLib(periodicite);
-		int noPeriod = p1.getId_periode();
+		int noPeriod = p1.getId_periodicite();
 		
         String str = titre + " " + desc + " (" + tarif + " euros)";
        

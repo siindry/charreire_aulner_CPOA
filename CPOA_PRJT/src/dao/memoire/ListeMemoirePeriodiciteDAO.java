@@ -40,11 +40,11 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			
 			
 			int compt = 0;
-			int id = p1.getId_periode();
+			int id = p1.getId_periodicite();
 			boolean exist = false;
 			
 			while(exist==false && compt < this.donnees.size()) {
-				if(this.donnees.get(compt).getId_periode() == id) {
+				if(this.donnees.get(compt).getId_periodicite() == id) {
 					p1 = this.donnees.set(compt, p1);
 					exist=true;
 				}
@@ -64,7 +64,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 		public boolean create(Periodicite p1) {
 			
 
-			p1.setId_periode(this.donnees.size()+1);
+			p1.setId_periodicite(this.donnees.size()+1);
 			boolean fait = this.donnees.add(p1);
 			return fait;
 		}
@@ -74,11 +74,11 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 		public boolean delete(Periodicite p1) {
 			
 			int compt = 0;
-			int id = p1.getId_periode();
+			int id = p1.getId_periodicite();
 			boolean exist = false;
 				
 			while(exist==false && compt < this.donnees.size()) {
-				if(this.donnees.get(compt).getId_periode() == id) {
+				if(this.donnees.get(compt).getId_periodicite() == id) {
 					
 					p1 = this.donnees.remove(compt);
 					exist=true;
@@ -106,9 +106,9 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			int compt = 0;
 			
 			while(exist==false && compt < this.donnees.size()) {
-				if(this.donnees.get(compt).getId_periode() == id) {
+				if(this.donnees.get(compt).getId_periodicite() == id) {
 					p1 = this.donnees.get(compt);
-					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periodicite() + "\n" + p1.getLibelle() + "\n");
 					exist = true;
 				}
 				else
@@ -126,9 +126,9 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 
 		@Override
 		public int createGetKey(Periodicite p1) {
-			p1.setId_periode(this.donnees.size()+1);
+			p1.setId_periodicite(this.donnees.size()+1);
 			this.donnees.add(p1);
-			int id = p1.getId_periode();
+			int id = p1.getId_periodicite();
 			return id;
 		}
 		
@@ -141,7 +141,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			
 			while(compt < this.donnees.size()) {
 				p1 = this.donnees.get(compt);
-				System.out.println("\n" + "Id : " + p1.getId_periode() + "\n Libelle : " + p1.getLibelle() + "\n");
+				System.out.println("\n" + "Id : " + p1.getId_periodicite() + "\n Libelle : " + p1.getLibelle() + "\n");
 				compt++;
 
 			}
@@ -162,7 +162,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			while(exist==false && compt < this.donnees.size()) {
 				if(this.donnees.get(compt).getLibelle() == lib) {
 					p1 = this.donnees.get(compt);
-					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periode() + "\n" + p1.getLibelle() + "\n");
+					System.out.println("ligne numero " + compt + "\n" + "Id" + p1.getId_periodicite() + "\n" + p1.getLibelle() + "\n");
 					exist = true;
 				}
 				else
@@ -185,7 +185,7 @@ public class ListeMemoirePeriodiciteDAO implements IPeriodiciteDAO{
 			
 			while(compt < this.donnees.size()) {
 				p1 = this.donnees.get(compt);
-				System.out.println("\n" + "Id : " + p1.getId_periode() + "\n Libelle : " + p1.getLibelle() + "\n");
+				System.out.println("\n" + "Id : " + p1.getId_periodicite() + "\n Libelle : " + p1.getLibelle() + "\n");
 				compt++;
 				arrP.add(p1.getLibelle());
 

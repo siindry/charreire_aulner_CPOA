@@ -48,12 +48,12 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 		
 		
 		int compt = 0;
-		int idab = a1.getIdCl();
-		int idrv = a1.getIdRev();
+		int idab = a1.getId_client();
+		int idrv = a1.getId_revue();
 		boolean exist = false;
 		
 		while(exist==false && compt < this.donnees.size()) {
-			if(this.donnees.get(compt).getIdCl() == idab && this.donnees.get(compt).getIdRev() == idrv) {
+			if(this.donnees.get(compt).getId_client() == idab && this.donnees.get(compt).getId_revue() == idrv) {
 				a1 = this.donnees.set(compt, a1);
 				exist=true;
 			}
@@ -81,12 +81,12 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 	public boolean delete(Abonnement a1) {
 		
 		int compt = 0;
-		int idab = a1.getIdCl();
-		int idrv = a1.getIdRev();
+		int idab = a1.getId_client();
+		int idrv = a1.getId_revue();
 		boolean exist = false;
 			
 		while(exist==false && compt < this.donnees.size()) {
-			if(this.donnees.get(compt).getIdCl() == idab && this.donnees.get(compt).getIdRev() == idrv) {
+			if(this.donnees.get(compt).getId_client() == idab && this.donnees.get(compt).getId_revue() == idrv) {
 				a1 = this.donnees.remove(compt);
 				exist=true;
 			}
@@ -110,10 +110,10 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 		int compt = 0;
 		
 		while(exist==false && compt < this.donnees.size()) {
-			if(this.donnees.get(compt).getIdCl() == id1 && this.donnees.get(compt).getIdRev() == id2) {
+			if(this.donnees.get(compt).getId_client() == id1 && this.donnees.get(compt).getId_revue() == id2) {
 				a1 = this.donnees.get(compt);
-				System.out.println("\n" + "Numero du client : " + a1.getIdCl() + "\n"  + "Numero de revue : " + a1.getIdRev() + "\n" + "Date début : "  + a1.getDateDeb() +
-						"\n" + "Date fin : " + a1.getDateFin() + "\n");
+				System.out.println("\n" + "Numero du client : " + a1.getId_client() + "\n"  + "Numero de revue : " + a1.getId_revue() + "\n" + "Date début : "  + a1.getDate_debut() +
+						"\n" + "Date fin : " + a1.getDate_fin() + "\n");
 				exist = true;
 			}
 			else
@@ -137,8 +137,8 @@ public class ListeMemoireAbonnementDAO implements IAbonnementDAO{
 		
 		while(exist==false && compt < this.donnees.size()) {
 			a1 = this.donnees.get(compt);
-			System.out.println("\n" + "Numero du client : " + a1.getIdCl() + "\n"  + "Numero de revue : " + a1.getIdRev() + "\n" + "Date début : "  + a1.getDateDeb() +
-					"\n" + "Date fin : " + a1.getDateFin() + "\n");
+			System.out.println("\n" + "Numero du client : " + a1.getId_client() + "\n"  + "Numero de revue : " + a1.getId_revue() + "\n" + "Date début : "  + a1.getDate_debut() +
+					"\n" + "Date fin : " + a1.getDate_fin() + "\n");
 			compt++;
 
 		}
