@@ -59,7 +59,7 @@ public class ClientController implements Initializable{
 		
         String str = nom + " " + prenom + ", habitant à " + no_rue + " " + voie + " à " + code_postal + " "+ ville + " " + pays;
        
-        Client c1 = new Client(nom, prenom, 0, no_rue, voie, code_postal, ville, pays);
+        Client c1 = new Client(0, nom, prenom, no_rue, voie, code_postal, ville, pays);
         lbl_res.setText(str);
         dao.getClientDAO().create(c1);
         
