@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PeriodiciteController">
+   <children>
+      <FlowPane alignment="CENTER" prefHeight="92.0" prefWidth="726.0" style="-fx-background-color: rgb(124,154,114);">
+         <children>
+            <Label text="Ajout/Modification&#10;Périodicité" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Courier New" size="39.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <GridPane alignment="TOP_CENTER" maxHeight="400.0" prefHeight="300.0" prefWidth="438.0" style="-fx-border-color: black;">
+         <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="181.0" minWidth="7.0" prefWidth="87.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="184.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="258.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="187.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Titre : " />
+            <TextField fx:id="txt_titre" alignment="TOP_LEFT" GridPane.columnIndex="1" />
+         </children>
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </GridPane>
+      <FlowPane alignment="CENTER" prefHeight="45.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" text="Confirmer" />
+            <Button fx:id="btn_cree1" mnemonicParsing="false" onAction="#button" text="Annuler" />
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="45.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lbl_res" text="Label" />
+         </children>
+      </FlowPane>
+   </children>
+</VBox>
