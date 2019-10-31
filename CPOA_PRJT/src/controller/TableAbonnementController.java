@@ -1,4 +1,4 @@
-package transfer;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -81,8 +81,8 @@ public class TableAbonnementController extends Stage{
 	
 	public void affModAbo(){
 		
-	        int rech1 = tbl_abonnement.getSelectionModel().getSelectedrech1();
-	        Abonnement abo = tbl_abonnement.getItems().get(rech1);
+	        int index = tbl_abonnement.getSelectionModel().getSelectedIndex();
+	        Abonnement abo = tbl_abonnement.getItems().get(index);
 			idC = abo.getId_client();
 			idR = abo.getId_revue();
 			dtDeb = abo.getDate_debut();
@@ -172,8 +172,8 @@ public class TableAbonnementController extends Stage{
 	
 	public void supprimer() throws IOException {
 		
-		int rech1 = tbl_abonnement.getSelectionModel().getSelectedrech1();
-        Abonnement abo = tbl_abonnement.getItems().get(rech1);
+		int index = tbl_abonnement.getSelectionModel().getSelectedIndex();
+        Abonnement abo = tbl_abonnement.getItems().get(index);
         dao.getAbonnementDAO().delete(abo);
         
         final URL fxmlURL = getClass().getResource("../application/VueTableAbonnement.fxml");
