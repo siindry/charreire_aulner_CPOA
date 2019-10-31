@@ -13,10 +13,12 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -67,6 +69,8 @@ public class AbonnementController extends Stage{
 	
 	DAOFactory dao = AccueilController.dao;
 	
+	Stage erreurStage = new Stage();
+	
 	
 	@FXML
 	public void initialize() throws SQLException {
@@ -77,7 +81,7 @@ public class AbonnementController extends Stage{
 			
 			ArrayList<Client> c1 = dao.getClientDAO().findAllNomPrenom();
 			ArrayList<String> listeNomPre = new ArrayList<String>();
-			for (int i=0; i<c1.size()-1; i++) {
+			for (int i=0; i<c1.size(); i++) {
 				Client c2 = c1.get(i);
 				listeNomPre.add(c2.getNom() + " " + c2.getPrenom());
 			}
@@ -149,14 +153,46 @@ public class AbonnementController extends Stage{
 		boolean reussi;
 		Abonnement abo1;
 		
-		if(ajout) {
-			abo1 = new Abonnement(Integer.parseInt(txt_idC.getText()),Integer.parseInt(txt_idR.getText()),dtp_deb.getValue(),dtp_fin.getValue());
-			reussi= dao.getAbonnementDAO().create(abo1);
-		}else {
-			abo1 = new Abonnement(Integer.parseInt(txt_idC.getText()),Integer.parseInt(txt_idR.getText()),dtp_deb.getValue(),dtp_fin.getValue());
-			reussi= dao.getAbonnementDAO().update(abo1);
+		boolean rempli = true;
+		String erreur = "";
+		
+		if(txt_idC.getText().isEmpty()) {
+			erreur = erreur + "Vous devez sélectionner un client !\n";
+			System.out.println("FAUX");
+			rempli = false;
 		}
-		if(reussi) {
+		
+		if(txt_idR.getText().isEmpty()) {
+			erreur = erreur + "Vous devez sélectionner une revue !\n";
+			System.out.println("FAUX");
+			rempli = false;
+		}
+		
+		if(dtp_deb.getValue() == null) {
+			erreur = erreur + "Le champ date début est vide !\n";
+			System.out.println("FAUX");
+			rempli = false;
+		}
+		
+		if(dtp_fin.getValue() == null) {
+			erreur = erreur + "Le champ date fin est vide !\n";
+			System.out.println("FAUX");
+			rempli = false;
+		}
+		
+		
+		
+		if(rempli) {
+			System.out.println("gogogogogo");
+			if(ajout) {
+				abo1 = new Abonnement(Integer.parseInt(txt_idC.getText()),Integer.parseInt(txt_idR.getText()),dtp_deb.getValue(),dtp_fin.getValue());
+				reussi= dao.getAbonnementDAO().create(abo1);
+			}else {
+				abo1 = new Abonnement(Integer.parseInt(txt_idC.getText()),Integer.parseInt(txt_idR.getText()),dtp_deb.getValue(),dtp_fin.getValue());
+				reussi= dao.getAbonnementDAO().update(abo1);
+			}
+			
+			if(reussi) {
 				lbl_res.setText(abo1.toString());
 				final URL fxmlURL = getClass().getResource("../application/VueTableAbonnement.fxml");
 				final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
@@ -177,8 +213,18 @@ public class AbonnementController extends Stage{
 			}
 			else
 				System.out.println("Il y a une erreur.");
+		}else {
+			
+			Stage stage = (Stage) btn_confirmer.getScene().getWindow();
+			Alert alert=new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(stage);
+			alert.setTitle("Erreur lors de la saisie");
+			alert.setHeaderText("Un ou plusieurs champs sont mal remplis.");
+			alert.setContentText(erreur);
+			alert.showAndWait();
 			
 		}
+	}
 
 		
 	
