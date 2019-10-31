@@ -40,18 +40,18 @@
             </TableView>
             <FlowPane alignment="CENTER" prefHeight="316.0" prefWidth="102.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="btn_modif" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#affAddModAbo" text="Modifier">
+                  <Button fx:id="btn_modif" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#affModAbo" text="Modifier">
                      <FlowPane.margin>
                         <Insets bottom="15.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btn_supp" disable="true" minWidth="80.0" mnemonicParsing="false" text="Supprimer">
+                  <Button fx:id="btn_supp" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer">
                      <FlowPane.margin>
                         <Insets bottom="15.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btn_ajout" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#affAddModAbo" text="Ajouter" />
-                  <Button minWidth="80.0" mnemonicParsing="false" text="Retour">
+                  <Button fx:id="btn_ajout" minWidth="80.0" mnemonicParsing="false" onAction="#affAddAbo" text="Ajouter" />
+                  <Button fx:id="btn_retour" minWidth="80.0" mnemonicParsing="false" onAction="#quitter" text="Retour">
                      <FlowPane.margin>
                         <Insets top="50.0" />
                      </FlowPane.margin>
