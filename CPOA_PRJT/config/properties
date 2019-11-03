@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd%22%3E
+
+ <properties>
+ <entry key="bdd">charreir2u_db_cpoa1</entry>
+ <entry key="login">charreir2u_appli</entry>
+ <entry key="pass">31806933</entry>
+ <entry key="port">3306</entry> 
+<entry key="url">jdbc:mysql://infodb.iutmetz.univ-lorraine.fr:3306/charreir2u_appli?serverTimezone=UTC</entry>
+
+</properties>

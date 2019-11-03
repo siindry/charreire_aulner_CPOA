@@ -3,9 +3,10 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import application.AccueilController;
 import dao.factory.DAOFactory;
@@ -18,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -28,7 +28,7 @@ import metier.Client;
 import metier.Revue;
 
 
-public class AbonnementController extends Stage{
+public class AbonnementController extends Stage implements IAddModController{
 	
 	@FXML
 	private Label lbl_titre;
@@ -60,16 +60,15 @@ public class AbonnementController extends Stage{
 	@FXML
 	private ComboBox<String> combo_revue;
 	
-	int idC = TableAbonnementController.idC;
-	int idR = TableAbonnementController.idR;
-	LocalDate dtDeb = TableAbonnementController.dtDeb;
-	LocalDate dtFin = TableAbonnementController.dtFin;
+	private int idC = TableAbonnementController.idC;
+	private int idR = TableAbonnementController.idR;
+	private LocalDate dtDeb = TableAbonnementController.dtDeb;
+	private LocalDate dtFin = TableAbonnementController.dtFin;
 	
-	boolean ajout = TableAbonnementController.ajout;
+	private boolean ajout = TableAbonnementController.ajout;
 	
-	DAOFactory dao = AccueilController.dao;
+	private DAOFactory dao = AccueilController.dao;
 	
-	Stage erreurStage = new Stage();
 	
 	
 	@FXML
@@ -91,7 +90,7 @@ public class AbonnementController extends Stage{
 			
 			ArrayList<Revue> r1 = dao.getRevueDAO().findAllTitreDesc();
 			ArrayList<String> listeTitreDesc = new ArrayList<String>();
-			for (int i=0; i<c1.size(); i++) {
+			for (int i=0; i<r1.size(); i++) {
 				Revue r2 = r1.get(i);
 				listeTitreDesc.add(r2.getTitre() + "," + r2.getDescription());
 			}
@@ -107,8 +106,8 @@ public class AbonnementController extends Stage{
 			dtp_deb.setValue(dtDeb);
 			dtp_fin.setValue(dtFin);
 			
-			ArrayList<String> c1 = dao.getAbonnementDAO().getClient(idC);
-			ArrayList<String> r1 = dao.getAbonnementDAO().getRevue(idR);
+			ArrayList<String> c1 = dao.getAbonnementDAO().getClientInClient(idC);
+			ArrayList<String> r1 = dao.getAbonnementDAO().getRevueInRevue(idR);
 			
 		    this.combo_client.setItems(FXCollections.observableArrayList(c1));
 		    this.combo_revue.setItems(FXCollections.observableArrayList(r1));
@@ -152,33 +151,43 @@ public class AbonnementController extends Stage{
 		
 		boolean reussi;
 		Abonnement abo1;
+		LocalDate dateAjd = LocalDate.now();
 		
 		boolean rempli = true;
 		String erreur = "";
 		
 		if(txt_idC.getText().isEmpty()) {
 			erreur = erreur + "Vous devez sélectionner un client !\n";
-			System.out.println("FAUX");
 			rempli = false;
 		}
 		
 		if(txt_idR.getText().isEmpty()) {
 			erreur = erreur + "Vous devez sélectionner une revue !\n";
-			System.out.println("FAUX");
 			rempli = false;
 		}
 		
 		if(dtp_deb.getValue() == null) {
 			erreur = erreur + "Le champ date début est vide !\n";
-			System.out.println("FAUX");
 			rempli = false;
+		}else {
+			if(dateAjd.isBefore(dtp_deb.getValue())) {
+				erreur = erreur + "Vous ne pouvez mettre une date de début supérieure à aujourd'hui !\n";
+				rempli = false;
+			}
 		}
 		
 		if(dtp_fin.getValue() == null) {
 			erreur = erreur + "Le champ date fin est vide !\n";
-			System.out.println("FAUX");
 			rempli = false;
+		}else {
+			if(dtp_fin.getValue().isBefore(dtp_deb.getValue())) {
+				erreur = erreur + "La date de fin est supérieure à celle du début de l'abonnement !\n";
+				rempli = false;
+			}
 		}
+		
+		
+		
 		
 		
 		

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AbonnementController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AbonnementController">
    <children>
       <FlowPane alignment="CENTER" prefHeight="92.0" prefWidth="726.0" style="-fx-background-color: rgb(124,154,114);">
          <children>
@@ -63,11 +63,6 @@
                </FlowPane.margin>
             </Button>
             <Button fx:id="btn_quitter" minWidth="75.0" mnemonicParsing="false" onAction="#quitter" text="Annuler" />
-         </children>
-      </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="61.0" prefWidth="756.0">
-         <children>
-            <Label fx:id="lbl_res" />
          </children>
       </FlowPane>
    </children>

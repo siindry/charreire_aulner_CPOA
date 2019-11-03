@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TableAbonnementController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="509.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TableAbonnementController">
    <children>
-      <FlowPane alignment="CENTER" prefHeight="92.0" prefWidth="726.0" style="-fx-background-color: rgb(124,154,114);">
+      <FlowPane alignment="CENTER" prefHeight="118.0" prefWidth="651.0" style="-fx-background-color: rgb(124,154,114);">
          <children>
             <Label text="Abonnement" textFill="WHITE">
                <font>
@@ -23,24 +25,24 @@
             </Label>
          </children>
       </FlowPane>
-      <GridPane prefHeight="316.0" prefWidth="600.0">
+      <GridPane prefHeight="318.0" prefWidth="651.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="10.0" prefWidth="502.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="98.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="613.0" minWidth="10.0" prefWidth="613.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="129.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TableView fx:id="tbl_abonnement" prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tbl_abonnement" prefHeight="296.0" prefWidth="543.0">
                <columns>
                   <TableColumn prefWidth="75.0" text="C1" />
                   <TableColumn prefWidth="75.0" text="C2" />
                </columns>
             </TableView>
-            <FlowPane alignment="CENTER" prefHeight="316.0" prefWidth="102.0" GridPane.columnIndex="1">
+            <FlowPane alignment="CENTER" prefHeight="296.0" prefWidth="132.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="btn_modif" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#affModAbo" text="Modifier">
+                  <Button fx:id="btn_modif" disable="true" minWidth="80.0" mnemonicParsing="false" onAction="#affMod" text="Modifier">
                      <FlowPane.margin>
                         <Insets bottom="15.0" />
                      </FlowPane.margin>
@@ -50,7 +52,7 @@
                         <Insets bottom="15.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btn_ajout" minWidth="80.0" mnemonicParsing="false" onAction="#affAddAbo" text="Ajouter" />
+                  <Button fx:id="btn_ajout" minWidth="80.0" mnemonicParsing="false" onAction="#affAdd" text="Ajouter" />
                   <Button fx:id="btn_retour" minWidth="80.0" mnemonicParsing="false" onAction="#quitter" text="Retour">
                      <FlowPane.margin>
                         <Insets top="50.0" />
@@ -60,5 +62,43 @@
             </FlowPane>
          </children>
       </GridPane>
+      <FlowPane alignment="CENTER" prefHeight="127.0" prefWidth="568.0">
+         <children>
+            <GridPane prefHeight="114.0" prefWidth="702.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Recherche par revue : " GridPane.rowIndex="1" />
+                  <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <ComboBox fx:id="combo_client" onAction="#rechercheByClient" prefHeight="25.0" prefWidth="300.0" promptText="--Cliquer ici pour voir les données de du client--" />
+                     </children>
+                  </FlowPane>
+                  <Label text="Recherche par cllient : " />
+                  <Button fx:id="btn_refresh" minWidth="140.0" mnemonicParsing="false" onAction="#rafraichir" text="Rafraichir la table" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <ComboBox fx:id="combo_revue" onAction="#rechercheByRevue" prefHeight="25.0" prefWidth="300.0" promptText="--Cliquer ici pour voir les données de la revue--" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <CheckBox fx:id="check_encours" mnemonicParsing="false" onAction="#rechercheEncours" text="Abonnement en cours " GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </CheckBox>
+               </children>
+               <FlowPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </FlowPane.margin>
+            </GridPane>
+         </children>
+      </FlowPane>
    </children>
 </VBox>

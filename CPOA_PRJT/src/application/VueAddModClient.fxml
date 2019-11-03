@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ClientController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ClientController">
    <children>
       <FlowPane alignment="CENTER" prefHeight="92.0" prefWidth="726.0" style="-fx-background-color: rgb(124,154,114);">
          <children>
-            <Label text="Ajout/Modification&#10;Client" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="lbl_titre" text="Ajout/Modification&#10;Client" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Courier New" size="39.0" />
                </font>
@@ -71,17 +71,13 @@
       </GridPane>
       <FlowPane alignment="CENTER" prefHeight="45.0" prefWidth="600.0">
          <children>
-            <Button fx:id="btn_confirmer" mnemonicParsing="false" text="Confirmer" />
-            <Button fx:id="btn_annuler" mnemonicParsing="false" onAction="#button" text="Annuler" />
+            <Button fx:id="btn_confirmer" mnemonicParsing="false" onAction="#sendToDB" text="Confirmer" />
+            <Button fx:id="btn_quitter" mnemonicParsing="false" onAction="#quitter" text="Annuler" />
          </children>
          <VBox.margin>
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
       </FlowPane>
-      <FlowPane alignment="CENTER" prefHeight="45.0" prefWidth="600.0">
-         <children>
-            <Label fx:id="lbl_res" text="Label" />
-         </children>
-      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="45.0" prefWidth="600.0" />
    </children>
 </VBox>

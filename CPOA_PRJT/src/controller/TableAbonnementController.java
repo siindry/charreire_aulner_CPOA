@@ -2,14 +2,20 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import application.AccueilController;
 import dao.factory.DAOFactory;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -20,9 +26,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import metier.Abonnement;
+import metier.Client;
+import metier.Revue;
 
 
-public class TableAbonnementController extends Stage{
+public class TableAbonnementController extends Stage implements ITableController {
 	
 	@FXML
 	private Button btn_supp;
@@ -37,6 +45,15 @@ public class TableAbonnementController extends Stage{
 	private Button btn_retour;
 	
 	@FXML
+	private ComboBox<String> combo_client;
+	
+	@FXML
+	private ComboBox<String> combo_revue;
+	
+	@FXML
+	private CheckBox check_encours;
+	
+	@FXML
 	private TableView<Abonnement> tbl_abonnement = new TableView<Abonnement>();
 	
 	public static int idC; 
@@ -45,11 +62,35 @@ public class TableAbonnementController extends Stage{
 	public static LocalDate dtFin;
 	public static boolean ajout; //booleen pour savoir quelle fenetre on va ouvrir entre ajout (true) ou modif (false)
 	
-	DAOFactory dao = AccueilController.dao;
+	private boolean refresh=false; //bolleen pour empecher des erreurs sur le combobox lors du rafraichissement de la table
+	
+	private DAOFactory dao = AccueilController.dao;
 	private Stage window = new Stage();
 	
 	@FXML
-	public void initialize() {
+	public void initialize() throws SQLException {
+		
+		ArrayList<Client> c1 = dao.getAbonnementDAO().getAllClientInAbo();
+		ArrayList<String> listeNomPre = new ArrayList<String>();
+		for (int i=0; i<c1.size(); i++) {
+			Client c2 = c1.get(i);
+			listeNomPre.add(c2.getNom() + " " + c2.getPrenom());
+		}
+		this.combo_client.setItems(FXCollections.observableArrayList(listeNomPre));
+		
+		
+		
+		ArrayList<Revue> r1 = dao.getAbonnementDAO().getAllRevueInAbo();
+		ArrayList<String> listeTitreDesc = new ArrayList<String>();
+		for (int i=0; i<r1.size(); i++) {
+			Revue r2 = r1.get(i);
+			listeTitreDesc.add(r2.getTitre() + "/" + r2.getDescription());
+		}
+		
+		this.combo_revue.setItems(FXCollections.observableArrayList(listeTitreDesc));
+		
+		
+		tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().findAll()));
 		
 		TableColumn<Abonnement, String> colNumC = new TableColumn<>("Numéro Client");
 		TableColumn<Abonnement, String> ColNumR = new TableColumn<>("Numéro Revue");
@@ -64,7 +105,11 @@ public class TableAbonnementController extends Stage{
 		
 		this.tbl_abonnement.getColumns().setAll(colNumC, ColNumR, oolDtDeb, colDtFin);
 		
-		this.tbl_abonnement.getItems().addAll(dao.getAbonnementDAO().findAll());
+		
+		
+		
+		
+		
 		
 		tbl_abonnement.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 		    if (newSelection != null) {
@@ -79,7 +124,7 @@ public class TableAbonnementController extends Stage{
 
 	}
 	
-	public void affModAbo(){
+	public void affMod(){
 		
 	        int index = tbl_abonnement.getSelectionModel().getSelectedIndex();
 	        Abonnement abo = tbl_abonnement.getItems().get(index);
@@ -117,7 +162,7 @@ public class TableAbonnementController extends Stage{
 	
 	}
 	
-	public void affAddAbo(){
+	public void affAdd(){
 
         ajout=true;
         
@@ -196,9 +241,63 @@ public class TableAbonnementController extends Stage{
 	}
 	
 	
+	public void rechercheByClient() {
+		
+		if(!refresh) {
+			String clientTable = combo_client.getSelectionModel().getSelectedItem();
+	
+			String[] limite = clientTable.split("\\ ");
+	
+			String nom = limite[0];
+			String prenom = limite[1];
+			
+			int id = dao.getClientDAO().getIdbyNom(nom, prenom);
+			
+			tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().getClientByIdInArray(id)));
+		
+		}
+	}
 	
 	
+	public void rechercheByRevue() {
+		
+		if(!refresh) {
+			String revue = combo_revue.getSelectionModel().getSelectedItem();
+			
+			String[] limite = revue.split("\\/"); // String array, each element is text between dots
 	
+			String titre = limite[0];
+			String description = limite[1];
+			
+			int id = dao.getRevueDAO().getIdByTitre(titre, description);
+			
+			tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().getRevueByIdInArray(id)));
+			
+		}
+	}
+	
+	public void rechercheEncours() {
+		
+		if(check_encours.isSelected()){
+			tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().getAboCourant()));
+			   
+		} else {
+		   	tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().findAll()));
+		}
+		
+		
+	}
+	
+	public void rafraichir() {
+		
+		refresh = true;
+		combo_client.getSelectionModel().clearSelection();
+		combo_revue.getSelectionModel().clearSelection();
+		check_encours.setSelected(false); 
+		refresh=false;
+		tbl_abonnement.setItems(FXCollections.observableArrayList(dao.getAbonnementDAO().findAll()));
+		
+	}
 	
 	
 }
