@@ -10,5 +10,11 @@ groupe 2.1
 
 -Répartition:
 
+-Ce qui fonctionne :
+Tests, affichage, ajout, modification, suppression sur les 4 tables
+
+
 -Ce qui ne fonctionne pas:
+
+
 
