@@ -25,6 +25,7 @@ import metier.Abonnement;
 import metier.Client;
 
 
+
 public class ClientController extends Stage{
 	
 	@FXML
@@ -128,101 +129,96 @@ public class ClientController extends Stage{
 	
 	public void sendToDB() throws SQLException, IOException {
 			
-			boolean reussi;
-			Client c1;
+		boolean reussi;
+		Client c1;
+		
+		boolean rempli = true;
+		String erreur = "";
+		
+		if(txt_nom.getText().isEmpty()) {
+			erreur = erreur + "Le champ Nom est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_prenom.getText().isEmpty()) {
+			erreur = erreur + "Le champ Prénom est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_no_rue.getText().isEmpty()) {
+			erreur = erreur + "Le champ N°rue est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_voie.getText().isEmpty()) {
+			erreur = erreur + "Le champ Voie est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_code_postal.getText().isEmpty()) {
+			erreur = erreur + "Le champ Code Postal est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_ville.getText().isEmpty()) {
+			erreur = erreur + "Le champ Ville est vide !\n";
+			rempli = false;
+		}
+		
+		if(txt_pays.getText().isEmpty()) {
+			erreur = erreur + "Le champ Pays est vide !\n";
+			rempli = false;
+		}
+
+		
+		
+		
+		if(rempli) {
 			
-			boolean rempli = true;
-			String erreur = "";
+			System.out.println("valeurs entrées cohérentes");
 			
-			System.out.println("appui");
-			
-			if(txt_nom.getText().isEmpty()) {
-				erreur = erreur + "Vous devez sélectionner un Nom !\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_prenom.getText().isEmpty()) {
-				erreur = erreur + "Vous devez sélectionner une Prenom !\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_no_rue.getText() == null) {
-				erreur = erreur + "Vous devez sélectionner un numéro de rue !\\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_voie.getText() == null) {
-				erreur = erreur + "Vous devez sélectionner une rue !\\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_code_postal.getText() == null) {
-				erreur = erreur + "Vous devez sélectionner un code postal !\\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_ville.getText() == null) {
-				erreur = erreur + "Vous devez sélectionner une ville !\\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			if(txt_pays.getText() == null) {
-				erreur = erreur + "Vous devez sélectionner un pays !\\n";
-				System.out.println("FAUX");
-				rempli = false;
-			}
-			
-			///ici
-			
-			if(rempli) {
-				System.out.println("test rempli");
-				if(ajout) {
-					c1 = new Client(idC,txt_nom.getText(),txt_prenom.getText(),txt_no_rue.getText(),txt_voie.getText(),txt_code_postal.getText(),txt_ville.getText(),txt_pays.getText());
-					reussi= dao.getClientDAO().create(c1);
-				}else {
-					c1 = new Client(idC,txt_nom.getText(),txt_prenom.getText(),txt_no_rue.getText(),txt_voie.getText(),txt_code_postal.getText(),txt_ville.getText(),txt_pays.getText());
-					reussi= dao.getClientDAO().update(c1);
-				}
-				
-				if(reussi) {//!!!
-					lbl_res.setText("yo res");
-					final URL fxmlURL = getClass().getResource("../application/VueTableClient.fxml");
-					final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-					final VBox node = (VBox)fxmlLoader.load();
-					Scene scene = new Scene(node);
-					this.initModality(Modality.APPLICATION_MODAL);
-					
-					TableClientController controleur = fxmlLoader.getController();
-					fxmlLoader.setController(controleur);
-					
-					scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
-					this.setScene(scene);
-					this.setTitle("Table Client");
-					this.show();
-					
-					Stage stage = (Stage) btn_confirmer.getScene().getWindow();
-					stage.close();
-				}
-				else
-					System.out.println("Il y a une erreur.");
+			if(ajout) {
+				c1 = new Client(idC, txt_nom.getText(),txt_prenom.getText(),txt_no_rue.getText(),txt_voie.getText(),txt_code_postal.getText(),txt_ville.getText(),txt_pays.getText());
+				reussi= dao.getClientDAO().create(c1);
 			}else {
+				c1 = new Client(idC, txt_nom.getText(),txt_prenom.getText(),txt_no_rue.getText(),txt_voie.getText(),txt_code_postal.getText(),txt_ville.getText(),txt_pays.getText());
+				reussi= dao.getClientDAO().update(c1);
+			}
+			
+			if(reussi) {
+				
+				
+				final URL fxmlURL = getClass().getResource("../application/VueTableClient.fxml");
+				final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+				final VBox node = (VBox)fxmlLoader.load();
+				Scene scene = new Scene(node);
+				this.initModality(Modality.APPLICATION_MODAL);
+				
+				TableClientController controleur = fxmlLoader.getController();
+				fxmlLoader.setController(controleur);
+				
+				scene.getStylesheets().add(getClass().getResource("../application/application.css").toExternalForm());
+				this.setScene(scene);
+				this.setTitle("Table Client");
+				this.show();
 				
 				Stage stage = (Stage) btn_confirmer.getScene().getWindow();
-				Alert alert=new Alert(Alert.AlertType.ERROR);
-				alert.initOwner(stage);
-				alert.setTitle("Erreur lors de la saisie");
-				alert.setHeaderText("Un ou plusieurs champs sont mal remplis.");
-				alert.setContentText(erreur);
-				alert.showAndWait();
-				
+				stage.close();
 			}
+			else
+				System.out.println("Il y a une erreur.");
+		}else {
+			
+			Stage stage = (Stage) btn_confirmer.getScene().getWindow();
+			Alert alert=new Alert(Alert.AlertType.ERROR);
+			alert.initOwner(stage);
+			alert.setTitle("Erreur lors de la saisie");
+			alert.setHeaderText("Un ou plusieurs champs sont mal remplis.");
+			alert.setContentText(erreur);
+			alert.showAndWait();
+			
 		}
+	}
 	
 	public void quitter() throws IOException {
 		

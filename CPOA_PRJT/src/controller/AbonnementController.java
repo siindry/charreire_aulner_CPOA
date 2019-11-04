@@ -188,11 +188,8 @@ public class AbonnementController extends Stage implements IAddModController{
 		
 		
 		
-		
-		
-		
 		if(rempli) {
-			System.out.println("gogogogogo");
+			System.out.println("entrées cohérentes");
 			if(ajout) {
 				abo1 = new Abonnement(Integer.parseInt(txt_idC.getText()),Integer.parseInt(txt_idR.getText()),dtp_deb.getValue(),dtp_fin.getValue());
 				reussi= dao.getAbonnementDAO().create(abo1);
@@ -202,7 +199,7 @@ public class AbonnementController extends Stage implements IAddModController{
 			}
 			
 			if(reussi) {
-				lbl_res.setText(abo1.toString());
+				
 				final URL fxmlURL = getClass().getResource("../application/VueTableAbonnement.fxml");
 				final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
 				final VBox node = (VBox)fxmlLoader.load();
